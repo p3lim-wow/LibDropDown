@@ -1,0 +1,9 @@
+## Interface: 70200
+## Author: p3lim
+## Version: @project-version@
+## Title: Lib: DropDown
+## Notes: Library that allows easy creation of DropDown menus
+## OptionalDeps: LibStub
+
+embed.xml
+StockMenu.lua

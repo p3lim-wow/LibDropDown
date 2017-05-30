@@ -1,0 +1,186 @@
+<Ui>
+	<!-- Project -->
+	<Script file='LibDropDown.lua'/>
+	<Script file='styles/default.lua'/>
+	<Script file='styles/menu.lua'/>
+	<Script file='styles/pixel.lua'/>
+
+	<!-- Templates -->
+	<Frame name='LibDropDownButtonTemplate' virtual='true' mixin='LibDropDownButtonMixin, CallbackRegistryBaseMixin'>
+		<Size x='165' y='32'/>
+		<Scripts>
+			<OnShow method='OnShow'/>
+			<OnHide method='CloseAll'/>
+		</Scripts>
+		<Layers>
+			<Layer level='ARTWORK'>
+				<Texture parentKey='Left' file='Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame'>
+					<Size x='25' y='64'/>
+					<Anchors>
+						<Anchor point='TOPLEFT'>
+							<Offset x='0' y='17'/>
+						</Anchor>
+					</Anchors>
+					<TexCoords left='0' right='0.1953125' top='0' bottom='1'/>
+				</Texture>
+				<Texture parentKey='Right' file='Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame'>
+					<Size x='25' y='64'/>
+					<Anchors>
+						<Anchor point='TOPRIGHT'>
+							<Offset x='0' y='17'/>
+						</Anchor>
+					</Anchors>
+					<TexCoords left='0.8046875' right='1' top='0' bottom='1'/>
+				</Texture>
+				<Texture parentKey='Middle' file='Interface\Glues\CharacterCreate\CharacterCreate-LabelFrame'>
+					<Size x='115' y='64'/>
+					<Anchors>
+						<Anchor point='LEFT' relativeKey='$parent.Left' relativePoint='RIGHT'/>
+						<Anchor point='RIGHT' relativeKey='$parent.Right' relativePoint='LEFT'/>
+					</Anchors>
+					<TexCoords left='0.1953125' right='0.8046875' top='0' bottom='1'/>
+				</Texture>
+				<FontString parentKey='Text' inherits='GameFontHighlightSmall' wordwrap='false' justifyH='RIGHT'>
+					<Size x='0' y='10'/>
+					<Anchors>
+						<Anchor point='RIGHT' relativeKey='$parent.Right'>
+							<Offset x='-43' y='2'/>
+						</Anchor>
+						<Anchor point='LEFT' relativeKey='$parent.Left'>
+							<Offset x='27' y='2'/>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+			<Layer level='OVERLAY'>
+				<Texture parentKey='Icon' hidden='true'>
+					<Size x='16' y='16'/>
+					<Anchors>
+						<Anchor point='LEFT'>
+							<Offset x='30' y='2'/>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button parentKey='Button' motionScriptsWhileDisabled='true'>
+				<Size x='24' y='24'/>
+				<Anchors>
+					<Anchor point='TOPRIGHT' relativeKey='$parent.Right'>
+						<Offset x='-16' y='-18'/>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnEnter>
+						local script = self:GetParent():GetScript('OnEnter')
+						if(script) then
+							script(self:GetParent())
+						end
+					</OnEnter>
+					<OnLeave>
+						local script = self:GetParent():GetScript('OnLeave')
+						if(script) then
+							script(self:GetParent())
+						end
+					</OnLeave>
+					<OnClick>
+						self:GetParent():Toggle()
+						PlaySound('igMainMenuOptionCheckBoxOn')
+					</OnClick>
+				</Scripts>
+				<NormalTexture file='Interface\ChatFrame\UI-ChatIcon-ScrollDown-Up'>
+					<Size x='24' y='24'/>
+					<Anchors>
+						<Anchor point='RIGHT'/>
+					</Anchors>
+				</NormalTexture>
+				<PushedTexture file='Interface\ChatFrame\UI-ChatIcon-ScrollDown-Down'>
+					<Size x='24' y='24'/>
+					<Anchors>
+						<Anchor point='RIGHT'/>
+					</Anchors>
+				</PushedTexture>
+				<DisabledTexture file='Interface\ChatFrame\UI-ChatIcon-ScrollDown-Disabled'>
+					<Size x='24' y='24'/>
+					<Anchors>
+						<Anchor point='RIGHT'/>
+					</Anchors>
+				</DisabledTexture>
+				<HighlightTexture file='Interface\Buttons\UI-Common-MouseHilight' alphaMode='ADD'>
+					<Size x='24' y='24'/>
+					<Anchors>
+						<Anchor point='RIGHT'/>
+					</Anchors>
+				</HighlightTexture>
+			</Button>
+		</Frames>
+	</Frame>
+
+	<Button name='LibDropDownMenuTemplate' virtual='true' hidden='true' enableMouse='true' frameStrata='DIALOG' clampedToScreen='true' mixin='LibDropDownMenuMixin, CallbackRegistryBaseMixin'>
+		<Scripts>
+			<OnLoad method='OnLoad'/>
+			<OnShow method='OnShow'/>
+			<OnHide method='OnHide'/>
+			<OnEnter method='OnEnter'/>
+			<OnLeave method='OnLeave'/>
+		</Scripts>
+		<Frames>
+			<Frame parentKey='Backdrop'>
+				<Anchors>
+					<Anchor point='CENTER'/>
+				</Anchors>
+			</Frame>
+		</Frames>
+	</Button>
+
+	<Button name='LibDropDownLineTemplate' virtual='true' enableMouse='true' mixin='LibDropDownLineMixin'>
+		<Size x='1' y='16'/>
+		<Scripts>
+			<OnLoad method='OnLoad'/>
+			<OnEnter method='OnEnter'/>
+			<OnLeave method='OnLeave'/>
+			<OnClick method='OnClick'/>
+		</Scripts>
+		<Layers>
+			<Layer level='BACKGROUND'>
+				<Texture parentKey='Highlight' file='Interface\QuestFrame\UI-QuestTitleHighlight' alphaMode='ADD' setAllPoints='true' hidden='true'/>
+			</Layer>
+			<Layer level='ARTWORK'>
+				<Texture parentKey='Radio' file='Interface\Common\UI-DropDownRadioChecks'>
+					<Size x='16' y='16'/>
+					<Anchors>
+						<Anchor point='RIGHT'/>
+					</Anchors>
+				</Texture>
+				<Texture parentKey='Expand' file='Interface\ChatFrame\ChatFrameExpandArrow'>
+					<Size x='16' y='16'/>
+					<Anchors>
+						<Anchor point='RIGHT'/>
+					</Anchors>
+				</Texture>
+				<Texture parentKey='Spacer' alpha='0.5' hidden='true' file='Interface\ChatFrame\ChatFrameBackground'>
+					<Size y='1'/>
+					<Anchors>
+						<Anchor point='RIGHT'/>
+						<Anchor point='LEFT'/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<!-- color swatch -->
+			<!-- slider -->
+			<!-- editbox -->
+			<!-- ??? -->
+		</Frames>
+		<ButtonText parentKey='Text'>
+			<Anchors>
+				<Anchor point='LEFT'/>
+			</Anchors>
+		</ButtonText>
+		<NormalFont style='GameFontHighlightSmallLeft'/>
+		<HighlightFont style='GameFontHighlightSmallLeft'/>
+		<DisabledFont style='GameFontDisableSmallLeft'/>
+	</Button>
+</Ui>
