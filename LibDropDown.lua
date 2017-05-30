@@ -497,7 +497,10 @@ Sets the active style for all dropdowns related to this one.
 function LibDropDownMenuMixin:SetStyle(name)
 	if(not name) then
 		name = self.parent.style or 'DEFAULT'
+	elseif(not styles[name]) then
+		error('Style "' .. name .. '" does not exist.')
 	end
+
 	self.parent.style = name
 
 	local data = styles[name]
