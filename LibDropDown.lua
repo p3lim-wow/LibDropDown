@@ -444,7 +444,7 @@ Everything™ is optional, some are exclusive with others.
 	- `colorB`: Blue color channel, 0-1 _(number)_
 	- `colorOpacity`: Alpha channel, 0-1 _(number)_
 	- `colorPickerCallback`: Callback function for the color picker _(function)_
-	  Arguments passed: `color`, see [ColorMixin, SharedXML\Util.lua](https://github.com/tomrus88/BlizzardInterfaceCode/blob/e44c922a5ec20df37a4a0f2f4d8cd5716a575b47/Interface/SharedXML/Util.lua#L563).
+	  Arguments passed: `color`, see [SharedXML\Util.lua's ColorMixin](https://www.townlong-yak.com/framexml/live/go/ColorMixin).
 	- `icon`: Texture path for the icon to embed into the start of `text` _(string)_
 	- `iconTexCoords`: Texture coordinates for cropping the `icon` _(array)_
 	- `iconWidth`: Width of the displayed `icon` _(number)_
