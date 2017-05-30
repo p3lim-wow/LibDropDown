@@ -3,7 +3,6 @@
 	<Script file='LibDropDown.lua'/>
 	<Script file='styles/default.lua'/>
 	<Script file='styles/menu.lua'/>
-	<Script file='styles/pixel.lua'/>
 
 	<!-- Templates -->
 	<Frame name='LibDropDownButtonTemplate' virtual='true' mixin='LibDropDownButtonMixin, CallbackRegistryBaseMixin'>
