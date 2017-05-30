@@ -365,17 +365,25 @@ function LibDropDownMenuMixin:UpdateLine(index, data)
 		if(data.menu) then
 			Line.Expand:Show()
 		else
-			if(data.isColorSwatch) then
-				-- Line.ColorSwatch:Show()
-				-- TODO: stuff into mixin
+			if(data.isColorPicker) then
+				local r, g, b, a = data.colorR, data.colorG, data.colorB, data.colorOpacity
+				assert(r and type(r) == 'number', '')
+				assert(g and type(g) == 'number', '')
+				assert(b and type(data.colorB) == 'number', '')
+				assert(data.colorPickerCallback and type(data.colorPickerCallback) == 'function', '')
 
-				-- TODO
-				--- r, g, b, a
-					-- colorR, colorG, colorB, colorOpacity
-				--- hex (|cAARRGGBB)
-				--- other types?
-				--- callbacks?
+				if(not Line.colors) then
+					Line.colors = CreateColor(r, g, b, a)
+				else
+					Line.colors:SetRGBA(r, g, b, a)
+				end
+
+				Line.colorPickerCallback = data.colorPickerCallback
+				Line.ColorSwatch.Swatch:SetVertexColor(r, g, b, a or 1)
+				Line.ColorSwatch:Show()
 			else
+				Line.ColorSwatch:Hide()
+
 				if(data.checked ~= nil) then
 					Line.Radio:Show()
 
@@ -431,6 +439,8 @@ Everything™ is optional, some are exclusive with others.
 	- `colorG`: Green color channel, 0-1 _(number)_
 	- `colorB`: Blue color channel, 0-1 _(number)_
 	- `colorOpacity`: Alpha channel, 0-1 _(number)_
+	- `colorPickerCallback`: Callback function for the color picker _(function)_
+	  Arguments passed: `color`, see [ColorMixin, SharedXML\Util.lua](https://github.com/tomrus88/BlizzardInterfaceCode/blob/e44c922a5ec20df37a4a0f2f4d8cd5716a575b47/Interface/SharedXML/Util.lua#L563).
 	- `icon`: Texture path for the icon to embed into the start of `text` _(string)_
 	- `iconTexCoords`: Texture coordinates for cropping the `icon` _(array)_
 	- `iconWidth`: Width of the displayed `icon` _(number)_
@@ -595,7 +605,29 @@ function LibDropDownLineMixin:OnLeave()
 end
 
 function LibDropDownLineMixin:OnClick(button)
-	pcall(self.func, button, self.args and unpack(self.args))
+	if(self.ColorSwatch:IsShown()) then
+		ColorPickerFrame.func = function()
+			local r, g, b = ColorPickerFrame:GetColorRGB()
+			local a = ColorPickerFrame.hasOpacity and (1 - OpacitySliderFrame:GetValue()) or 1
+			self:colorPickerCallback(CreateColor(r, g, b , a))
+		end
+
+		ColorPickerFrame.opacityFunc = ColorPickerFrame.func
+		ColorPickerFrame.cancelFunc = function()
+			self:colorPickerCallback(self.colors)
+		end
+
+		local r, g, b, a = self.colors:GetRGBA()
+		ColorPickerFrame.hasOpacity = not not a
+		ColorPickerFrame.opacity = a
+		-- BUG: ColorSelect not reacting to SetColorRGB in build 24015
+		ColorPickerFrame:SetColorRGB(r, g, b)
+
+		ShowUIPanel(ColorPickerFrame)
+		PlaySound('igMainMenuOptionCheckBoxOn')
+	else
+		pcall(self.func, button, self.args and unpack(self.args))
+	end
 
 	if(not self.keepShown) then
 		LibDropDown:CloseAll()

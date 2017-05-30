@@ -168,7 +168,47 @@
 			</Layer>
 		</Layers>
 		<Frames>
-			<!-- color swatch -->
+			<Button parentKey='ColorSwatch' hidden='true'>
+				<Size x='16' y='16'/>
+				<Anchors>
+					<Anchor point='RIGHT'>
+						<Offset x='0' y='0'/>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level='BACKGROUND'>
+						<Texture parentKey='Background'>
+							<Size x='14' y='14'/>
+							<Anchors>
+								<Anchor point='CENTER'>
+									<Offset x='0' y='0'/>
+								</Anchor>
+							</Anchors>
+							<Color r='1' g='1' b='1'/>
+						</Texture>
+						<Texture parentKey='Checkers' file='Tileset\Generic\Checkers' desaturated='true'>
+							<Size x='14' y='14'/>
+							<Anchors>
+								<Anchor point='CENTER'>
+									<Offset x='0' y='0'/>
+								</Anchor>
+							</Anchors>
+							<TexCoords left='0.25' right='0' top='0.5' bottom='0.25'/>
+							<Color r='1' g='1' b='1' a='0.75'/>
+						</Texture>
+					</Layer>
+					<Layer level='OVERLAY'>
+						<Texture parentKey='Swatch' file='Interface\ChatFrame\ChatFrameColorSwatch'>
+							<Size x='20' y='20'/>
+							<Anchors>
+								<Anchor point='CENTER'>
+									<Offset x='0' y='0'/>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Button>
 			<!-- slider -->
 			<!-- editbox -->
 			<!-- ??? -->
