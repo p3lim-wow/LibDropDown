@@ -370,10 +370,11 @@ function LibDropDownMenuMixin:UpdateLine(index, data)
 		else
 			if(data.isColorPicker) then
 				local r, g, b, a = data.colorR, data.colorG, data.colorB, data.colorOpacity
-				assert(r and type(r) == 'number', '')
-				assert(g and type(g) == 'number', '')
-				assert(b and type(data.colorB) == 'number', '')
-				assert(data.colorPickerCallback and type(data.colorPickerCallback) == 'function', '')
+				local callback = data.colorPickerCallback
+				assert(r and type(r) == 'number', 'Missing required data "colorR"')
+				assert(g and type(g) == 'number', 'Missing required data "colorG"')
+				assert(b and type(b) == 'number', 'Missing required data "colorB"')
+				assert(callback and type(callback) == 'function', 'Missing required data "colorPickerCallback"')
 
 				if(not Line.colors) then
 					Line.colors = CreateColor(r, g, b, a)
@@ -381,7 +382,7 @@ function LibDropDownMenuMixin:UpdateLine(index, data)
 					Line.colors:SetRGBA(r, g, b, a)
 				end
 
-				Line.colorPickerCallback = data.colorPickerCallback
+				Line.colorPickerCallback = callback
 				Line.ColorSwatch.Swatch:SetVertexColor(r, g, b, a or 1)
 				Line.ColorSwatch:Show()
 			else
