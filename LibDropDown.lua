@@ -300,7 +300,7 @@ function LibDropDownMenuMixin:UpdateLine(index, data)
 
 	Line.Radio:Hide()
 	Line.Expand:Hide()
-	-- Line.ColorSwatch:Hide()
+	Line.ColorSwatch:Hide()
 
 	if(data.isSpacer) then
 		Line.Spacer:Show()
@@ -386,8 +386,6 @@ function LibDropDownMenuMixin:UpdateLine(index, data)
 				Line.ColorSwatch.Swatch:SetVertexColor(r, g, b, a or 1)
 				Line.ColorSwatch:Show()
 			else
-				Line.ColorSwatch:Hide()
-
 				if(data.checked ~= nil) then
 					Line.Radio:Show()
 
