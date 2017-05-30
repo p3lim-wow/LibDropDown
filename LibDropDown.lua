@@ -315,7 +315,10 @@ function LibDropDownMenuMixin:UpdateLine(index, data)
 		Line:SetNormalFontObject(self.parent.normalFont)
 		Line.Spacer:Hide()
 
-		Line:SetText(data.text)
+		local text = data.text
+		assert(text and type(text) == 'string', 'Missing required data "text"')
+
+		Line:SetText(text)
 		Line:SetTexture(data.texture)
 
 		if(data.icon) then
