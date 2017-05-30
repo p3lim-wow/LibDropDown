@@ -616,12 +616,12 @@ function LibDropDownLineMixin:OnClick(button)
 		ColorPickerFrame.func = function()
 			local r, g, b = ColorPickerFrame:GetColorRGB()
 			local a = ColorPickerFrame.hasOpacity and (1 - OpacitySliderFrame:GetValue()) or 1
-			self:colorPickerCallback(CreateColor(r, g, b , a))
+			self.colorPickerCallback(CreateColor(r, g, b , a))
 		end
 
 		ColorPickerFrame.opacityFunc = ColorPickerFrame.func
 		ColorPickerFrame.cancelFunc = function()
-			self:colorPickerCallback(self.colors)
+			self.colorPickerCallback(self.colors)
 		end
 
 		local r, g, b, a = self.colors:GetRGBA()
