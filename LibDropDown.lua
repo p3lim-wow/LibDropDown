@@ -686,16 +686,16 @@ See [FrameXML/Util.lua's CreateAtlasMarkup](https://www.townlong-yak.com/framexm
 --]]
 function LibDropDownLineMixin:SetAtlas(...)
 	local markup = CreateAtlasMarkup(...)
-	self.__icon = markup
+	self.__atlas = markup
 	self:UpdateText()
 end
 
 function LibDropDownLineMixin:SetText(text)
-	self:SetFormattedText('%s%s', self.__icon or '', text)
+	self:SetFormattedText('%s%s', self.__icon or self.__atlas or '', text)
 end
 
 function LibDropDownLineMixin:UpdateText()
-	local text = self:GetText():gsub('|T.*|t')
+	local text = self:GetText():gsub('|T.*|t'):gsub('|A.*|a')
 	self:SetText(text)
 end
 
