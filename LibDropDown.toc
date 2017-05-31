@@ -6,4 +6,3 @@
 ## OptionalDeps: LibStub
 
 embed.xml
-StockMenu.lua
