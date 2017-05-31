@@ -2,23 +2,24 @@ local styles = {}
 local dropdowns = {}
 
 LibDropDown = {}
---[[### LibDropDown:CreateMenu(_parent_)
+--[[### LibDropDown:CreateMenu(_parent_, _name_)
 
 Creates a new, empty dropdown.
 
-- `parent`: Frame for both naming and parenting _(frame/string)_
+- `parent`: Frame for parenting. _(frame/string)_
+- `name`: Global name for the menu. Falls back to `parent` name with suffix. _(string)_
 
 #### Returns
 - `Menu`: Menu object
 --]]
-function LibDropDown:CreateMenu(parent)
+function LibDropDown:CreateMenu(parent, name)
 	assert(parent, 'A menu requires a given parent')
 
 	if(type(parent) == 'string') then
 		parent = _G[parent]
 	end
 
-	local Menu = CreateFrame('Button', parent:GetDebugName() .. 'Menu', parent, 'LibDropDownMenuTemplate')
+	local Menu = CreateFrame('Button', (name or parent:GetDebugName() .. 'Menu'), parent, 'LibDropDownMenuTemplate')
 	LibDropDownMenuMixin.OnLoad(Menu)
 
 	dropdowns[Menu] = true
