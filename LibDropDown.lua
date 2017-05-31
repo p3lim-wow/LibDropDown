@@ -123,12 +123,28 @@ function LibDropDownButtonMixin:SetAnchor(...)
 	self.Menu:SetAnchor(...)
 end
 
+--[[### LibDropDownButtonTemplate:GetAnchor()
+
+See [LibDropDownMenuTemplate:GetAnchor()]().
+--]]
+function LibDropDownButtonMixin:GetAnchor()
+	return self.Menu:GetAnchor()
+end
+
 --[[### LibDropDownButtonTemplate:SetAnchorCursor(_flag_)
 
 See [LibDropDownMenuTemplate:SetAnchorCursor(_flag_)]().
 --]]
 function LibDropDownButtonMixin:SetAnchorCursor(...)
 	self.Menu:SetAnchorCursor(...)
+end
+
+--[[### LibDropDownButtonTemplate:IsAnchorCursor()
+
+See [LibDropDownMenuTemplate:IsAnchorCursor()]().
+--]]
+function LibDropDownButtonMixin:IsAnchorCursor()
+	return self.Menu:IsAnchorCursor()
 end
 
 --[[### LibDropDownButtonTemplate:SetStyle(_name_)
@@ -139,12 +155,28 @@ function LibDropDownButtonMixin:SetStyle(...)
 	self.Menu:SetStyle(...)
 end
 
+--[[### LibDropDownButtonTemplate:GetStyle(_name_)
+
+See [LibDropDownMenuTemplate:GetStyle(_name_)]().
+--]]
+function LibDropDownButtonMixin:GetStyle()
+	return self.Menu:GetStyle()
+end
+
 --[[### LibDropDownButtonTemplate:SetTimeout(_timeout_)
 
 See [LibDropDownMenuTemplate:SetTimeout(_timeout_)]().
 --]]
 function LibDropDownButtonMixin:SetTimeout(...)
 	self.Menu:SetTimeout(...)
+end
+
+--[[### LibDropDownButtonTemplate:GetTimeout()
+
+See [LibDropDownMenuTemplate:GetTimeout()]().
+--]]
+function LibDropDownButtonMixin:GetTimeout()
+	return self.Menu:GetTimeout()
 end
 
 --[[### LibDropDownButtonTemplate:SetJustifyH(...)
@@ -155,6 +187,10 @@ function LibDropDownButtonMixin:SetJustifyH(...)
 	self.Text:SetJustifyH(...)
 end
 
+--[[### LibDropDownButtonTemplate:GetJustifyH()
+
+See [Widget:GetJustifyH](http://wowprogramming.com/docs/widgets/FontInstance/GetJustifyH).
+]]
 function LibDropDownButtonMixin:GetJustifyH()
 	return self.Text:GetJustifyH()
 end
@@ -167,16 +203,20 @@ function LibDropDownButtonMixin:SetText(...)
 	self.Text:SetText(...)
 end
 
+--[[### LibDropDownButtonTemplate:GetText()
+
+See [Widget:GetText](http://wowprogramming.com/docs/widgets/Button/GetText).
+]]
+function LibDropDownButtonMixin:GetText()
+	return self.Text:GetText()
+end
+
 --[[### LibDropDownButtonTemplate:SetFormattedText(...)
 
 See [Widget:SetFormattedText](http://wowprogramming.com/docs/widgets/Button/SetFormattedText).
 ]]
 function LibDropDownButtonMixin:SetFormattedText(...)
 	self.Text:SetFormattedText(...)
-end
-
-function LibDropDownButtonMixin:GetText()
-	return self.Text:GetText()
 end
 
 
@@ -524,6 +564,17 @@ function LibDropDownMenuMixin:SetStyle(name)
 	self.Backdrop:SetBackdropBorderColor((data.backdropBorderColor or HIGHLIGHT_FONT_COLOR):GetRGBA())
 end
 
+--[[### LibDropDownMenuTemplate:GetStyle()
+
+Gets the active style for this menu, and all menus related to this one.
+
+#### Returns
+- `name`: Name of registered style (see [LibDropDown:RegisterStyle]())
+--]]
+function LibDropDownMenuMixin:GetStyle()
+	return self.parent.style
+end
+
 --[[### LibDropDownMenuTemplate:SetAnchor(_point, anchor, relativePoint, x, y_)
 
 Replaces the default anchor with a custom one.
@@ -537,6 +588,21 @@ function LibDropDownMenuMixin:SetAnchor(point, anchor, relativePoint, x, y)
 	self.parent.anchor[5] = y
 end
 
+--[[### LibDropDownMenuTemplate:GetAnchor()
+
+Gets the registered anchor.
+
+#### Returns
+- `point`: Point on the menu the menu is anchored to the anchor.
+- `anchor`: The region the menu is anchored to.
+- `relativePoint`: Point on the anchor the menu is anchored to.
+- `x`: Horizontal offset, positive means shifted to the right.
+- `y`: Vertical offset, positive means shifted upwards.
+--]]
+function LibDropDownMenuMixin:GetAnchor()
+	return unpack(self.parent.anchor)
+end
+
 --[[### LibDropDownMenuTemplate:SetAnchorCursor(_state_)
 
 Allows the anchor to be overridden and places the menu on the cursor.
@@ -545,6 +611,17 @@ Allows the anchor to be overridden and places the menu on the cursor.
 --]]
 function LibDropDownMenuMixin:SetAnchorCursor(state)
 	self.parent.anchorCursor = state
+end
+
+--[[### LibDropDownMenuTemplate:IsAnchorCursor()
+
+States if the menu should be anchored to the cursor or not.
+
+#### Returns
+- `state`: `true`/`false` if the menu should be anchored to the cursor.
+--]]
+function LibDropDownMenuMixin:IsAnchorCursor()
+	return self.parent.anchorCursor
 end
 
 --[[### LibDropDownMenuTemplate:SetTimeout(_timeout_)
@@ -564,6 +641,17 @@ function LibDropDownMenuMixin:SetTimeout(timeout)
 		timer:Stop()
 		timer:Play()
 	end
+end
+
+--[[### LibDropDownMenuTemplate:GetTimeout()
+
+Gets the amount of time before the menu automatically hides.
+
+#### Returns
+- `timeout`: The timeout in seconds before the menu hides
+--]]
+function LibDropDownMenuMixin:GetTimeout()
+	return self.parent.timeout
 end
 
 
@@ -650,11 +738,24 @@ Sets the state of a radio button.
 - `state`: Enables/disables a radio button _(boolean)_
 --]]
 function LibDropDownLineMixin:SetRadioState(state)
+	self.Radio.state = state
+
 	if(state) then
 		self.Radio:SetTexCoord(0, 0.5, 0.5, 1)
 	else
 		self.Radio:SetTexCoord(0.5, 1, 0.5, 1)
 	end
+end
+
+--[[### LibDropDownLineTemplate:GetRadioState()
+
+Gets the state of a radio button.
+
+#### Returns
+- `state`: `true`/`false` state of the radio button _(boolean)_
+--]]
+function LibDropDownLineMixin:GetRadioState()
+	return self.Radio.state
 end
 
 --[[### LibDropDownLineTemplate:SetCheckedState(_state_)
@@ -664,11 +765,24 @@ Sets the state of a checkbutton.
 - `state`: Enables/disables a checkbutton _(boolean)_
 --]]
 function LibDropDownLineMixin:SetCheckedState(state)
+	self.Radio.state = state
+
 	if(state) then
 		self.Radio:SetTexCoord(0, 0.5, 0, 0.5)
 	else
 		self.Radio:SetTexCoord(0.5, 1, 0, 0.5)
 	end
+end
+
+--[[### LibDropDownLineTemplate:GetCheckedState()
+
+Gets the state of a checkbutton.
+
+#### Returns
+- `state`: `true`/`false` state of the checkbutton _(boolean)_
+--]]
+function LibDropDownLineMixin:GetCheckedState()
+	return self.Radio.state
 end
 
 --[[### LibDropDownLineTemplate:SetIcon(_..._)
@@ -681,6 +795,14 @@ function LibDropDownLineMixin:SetIcon(...)
 	self:UpdateText()
 end
 
+--[[### LibDropDownLineTemplate:GetIcon()
+
+See [FrameXML/Util.lua's CreateTextureMarkup](https://www.townlong-yak.com/framexml/live/go/CreateTextureMarkup)
+--]]
+function LibDropDownLineMixin:GetIcon()
+	return self.__icon
+end
+
 --[[### LibDropDownLineTemplate:SetAtlas(_..._)
 
 See [FrameXML/Util.lua's CreateAtlasMarkup](https://www.townlong-yak.com/framexml/live/go/CreateAtlasMarkup)
@@ -689,6 +811,14 @@ function LibDropDownLineMixin:SetAtlas(...)
 	local markup = CreateAtlasMarkup(...)
 	self.__atlas = markup
 	self:UpdateText()
+end
+
+--[[### LibDropDownLineTemplate:GetAtlas()
+
+See [FrameXML/Util.lua's CreateAtlasMarkup](https://www.townlong-yak.com/framexml/live/go/CreateAtlasMarkup)
+--]]
+function LibDropDownLineMixin:GetAtlas()
+	return self.__atlas
 end
 
 function LibDropDownLineMixin:SetText(text)
