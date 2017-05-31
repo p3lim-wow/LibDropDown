@@ -76,7 +76,8 @@ Register a style for use with `Button:SetStyle(name)` and `Menu:SetStyle(name)`.
 function LibDropDown:RegisterStyle(name, data)
 	styles[name] = data
 end
---[[ ### LibDropDown:IsStyleRegistered(name)
+
+--[[### LibDropDown:IsStyleRegistered(name)
 
 Returns whether a style with the given name is already registered or not _(boolean)_
 --]]
@@ -421,7 +422,7 @@ end
 
 --[[### LibDropDownMenuTemplate:AddLine(_data_)
 
-Adds a line using the given data to the dropdown menu.  
+Adds a line using the given data to the menu menu.  
 Everything™ is optional, some are exclusive with others.
 
 - `data`:
@@ -456,7 +457,7 @@ Everything™ is optional, some are exclusive with others.
 	- `atlasOffsetY`: Vertical offset for `atlas` _(number)_
 	- `atlasOffset`: Common offset for both axis for `atlas` _(number)_
 	- `disabled`: Disables the whole line _(boolean)_
-	- `menu`: Sub-dropdown for the current dropdown line _(array)_
+	- `menu`: Sub-menu for the current menu line _(array)_
 	  This needs to contain one or more tables of `data` (all of the above) in an  
 	  indexed array. Can be chained.
 #### Notes
@@ -492,7 +493,7 @@ end
 
 --[[### LibDropDownMenuTemplate:SetStyle(_name_)
 
-Sets the active style for all dropdowns related to this one.
+Sets the active style for all menus related to this one.
 
 - `name`: Name of registered style (see [LibDropDown:RegisterStyle]())
 --]]
@@ -537,7 +538,7 @@ end
 
 --[[### LibDropDownMenuTemplate:SetAnchorCursor(_state_)
 
-Allows the anchor to be overridden and places the dropdown on the cursor.
+Allows the anchor to be overridden and places the menu on the cursor.
 
 - `state`: Enables/disables cursor anchoring _(boolean)_
 --]]
@@ -547,7 +548,9 @@ end
 
 --[[### LibDropDownMenuTemplate:SetTimeout(_timeout_)
 
-- `timeout`: Sets the timeout in seconds before hiding the dropdown(s) _(number)_
+Sets the amount of time before the menu automatically hides.
+
+- `timeout`: Sets the timeout in seconds before hiding the menu(s) _(number)_
 --]]
 function LibDropDownMenuMixin:SetTimeout(timeout)
 	self.parent.timeout = timeout
