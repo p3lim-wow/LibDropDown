@@ -357,8 +357,19 @@ function LibDropDownMenuMixin:UpdateLine(index, data)
 		Line:SetNormalFontObject(self.parent.titleFont)
 	else
 		Line:EnableMouse(true)
-		Line:SetNormalFontObject(self.parent.normalFont)
 		Line.Spacer:Hide()
+
+		if(data.font) then
+			Line.Text:SetFont(data.font, data.fontSize or 12, data.fontFlags)
+		elseif(data.fontObject) then
+			Line:SetNormalFontObject(data.fontObject)
+			Line:SetHighlightFontObject(data.fontObject)
+			Line:SetDisabledFontObject(data.fontObject)
+		else
+			Line:SetNormalFontObject(self.parent.normalFont)
+			Line:SetHighlightFontObject(self.parent.highlightFont)
+			Line:SetDisabledFontObject(self.parent.disabledFont)
+		end
 
 		local text = data.text
 		assert(text and type(text) == 'string', 'Missing required data "text"')
@@ -501,6 +512,10 @@ Everything™ is optional, some are exclusive with others.
 	- `atlasOffsetY`: Vertical offset for `atlas` _(number)_
 	- `atlasOffset`: Common offset for both axis for `atlas` _(number)_
 	- `disabled`: Disables the whole line _(boolean)_
+	- `font`: Font to use for the line _(string)_
+	- `fontSize`: Font size to use for the line, requires `font` to be set _(number)_
+	- `fontFlags`: Font flags to use for the line, requires `font` to be set _(string)_
+	- `fontObject`: Font object to use for the line _(string/[FontInstance](http://wowprogramming.com/docs/widgets/FontInstance))_
 	- `menu`: Sub-menu for the current menu line _(array)_
 	  This needs to contain one or more tables of `data` (all of the above) in an  
 	  indexed array. Can be chained.
@@ -511,6 +526,8 @@ The following are exclusive options, only one can be used at a time:
 - menu
 - isColorPicker
 - checked
+- font
+- fontObject
 --]]
 function LibDropDownMenuMixin:AddLine(data)
 	if(not self.data) then
