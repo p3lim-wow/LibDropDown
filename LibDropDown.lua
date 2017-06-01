@@ -497,7 +497,7 @@ Everything™ is optional, some are exclusive with others.
 	- `colorG`: Green color channel, 0-1 _(number)_
 	- `colorB`: Blue color channel, 0-1 _(number)_
 	- `colorOpacity`: Alpha channel, 0-1 _(number)_
-	- `colorPickerCallback`: Callback function for the color picker _(function)_
+	- `colorPickerCallback`: Callback function for the color picker _(function)_  
 	  Arguments passed: `color`, see [SharedXML\Util.lua's ColorMixin](https://www.townlong-yak.com/framexml/live/go/ColorMixin).
 	- `icon`: Texture path for the icon to embed into the start of `text` _(string)_
 	- `iconTexCoords`: Texture coordinates for cropping the `icon` _(array)_
@@ -516,7 +516,7 @@ Everything™ is optional, some are exclusive with others.
 	- `fontSize`: Font size to use for the line, requires `font` to be set _(number)_
 	- `fontFlags`: Font flags to use for the line, requires `font` to be set _(string)_
 	- `fontObject`: Font object to use for the line _(string/[FontInstance](http://wowprogramming.com/docs/widgets/FontInstance))_
-	- `menu`: Sub-menu for the current menu line _(array)_
+	- `menu`: Sub-menu for the current menu line _(array)_  
 	  This needs to contain one or more tables of `data` (all of the above) in an  
 	  indexed array. Can be chained.
 #### Notes
