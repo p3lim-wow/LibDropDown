@@ -233,6 +233,7 @@ function LibDropDownMenuMixin:OnLoad()
 
 	self.anchor = {'TOP', self:GetParent(), 'BOTTOM', 0, -12} -- 8, 22
 	self.anchorCursor = false
+	self:SetClampRectInsets(-20, 20, 20, -20)
 
 	if(self.parent == self) then
 		-- create auto-hide timer on first menu
