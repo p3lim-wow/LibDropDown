@@ -350,8 +350,10 @@ function LibDropDownMenuMixin:UpdateLine(index, data)
 		Line:EnableMouse(false)
 		return Line
 	elseif(data.isTitle) then
+		local text = data.text
+		assert(text and type(text) == 'string', 'Missing required data "text"')
+		Line:SetText(text)
 		Line:EnableMouse(false)
-		Line:SetText(data.text)
 		Line:SetNormalFontObject(self.parent.titleFont)
 	else
 		Line:EnableMouse(true)
