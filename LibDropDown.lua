@@ -344,6 +344,7 @@ function LibDropDownMenuMixin:UpdateLine(index, data)
 	Line.Radio:Hide()
 	Line.Expand:Hide()
 	Line.ColorSwatch:Hide()
+	Line.Texture:Hide()
 
 	if(data.isSpacer) then
 		Line.Spacer:Show()
@@ -375,7 +376,7 @@ function LibDropDownMenuMixin:UpdateLine(index, data)
 		assert(text and type(text) == 'string', 'Missing required data "text"')
 
 		Line:SetText(text)
-		Line:SetTexture(data.texture)
+		Line:SetTexture(data.texture, data.textureColor)
 
 		if(data.icon) then
 			local width = data.iconWidth or 16
@@ -512,6 +513,8 @@ Everything™ is optional, some are exclusive with others.
 	- `atlasOffsetY`: Vertical offset for `atlas` _(number)_
 	- `atlasOffset`: Common offset for both axis for `atlas` _(number)_
 	- `disabled`: Disables the whole line _(boolean)_
+	- `texture`: Sets background texture that spans the line _(string)_
+	- `textureColor`: Sets the color of the background texture _([ColorMixin object](https://www.townlong-yak.com/framexml/live/go/ColorMixin))_
 	- `font`: Font to use for the line _(string)_
 	- `fontSize`: Font size to use for the line, requires `font` to be set _(number)_
 	- `fontFlags`: Font flags to use for the line, requires `font` to be set _(string)_
@@ -850,6 +853,13 @@ function LibDropDownLineMixin:UpdateText()
 	self:SetText(text)
 end
 
-function LibDropDownLineMixin:SetTexture(texture)
-	-- TODO: background texture (for shit like selecting health bar textures and whatnot)
+function LibDropDownLineMixin:SetTexture(texture, color)
+	self.Texture:SetTexture(texture)
+	if(color) then
+		self.Texture:SetVertexColor(color:GetRGBA())
+	else
+		self.Texture:SetVertexColor(1, 1, 1, 1)
+	end
+
+	self.Texture:Show()
 end

@@ -143,6 +143,7 @@
 		</Scripts>
 		<Layers>
 			<Layer level='BACKGROUND'>
+				<Texture parentKey='Texture' setAllPoints='true' hidden='true'/>
 				<Texture parentKey='Highlight' file='Interface\QuestFrame\UI-QuestTitleHighlight' alphaMode='ADD' setAllPoints='true' hidden='true'/>
 			</Layer>
 			<Layer level='ARTWORK'>
