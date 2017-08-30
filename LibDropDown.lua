@@ -744,7 +744,7 @@ function LibDropDownLineMixin:OnClick(button)
 		ColorPickerFrame:SetColorRGB(r, g, b)
 
 		ShowUIPanel(ColorPickerFrame)
-		PlaySound('igMainMenuOptionCheckBoxOn')
+		PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON)
 	else
 		pcall(self.func, button, unpack(self.args or {}))
 	end
