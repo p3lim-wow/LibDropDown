@@ -73,7 +73,7 @@
 					</OnLeave>
 					<OnClick>
 						self:GetParent():Toggle()
-						PlaySound('igMainMenuOptionCheckBoxOn')
+						PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON)
 					</OnClick>
 				</Scripts>
 				<NormalTexture file='Interface\ChatFrame\UI-ChatIcon-ScrollDown-Up'>
