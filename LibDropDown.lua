@@ -480,6 +480,7 @@ function LibDropDownMenuMixin:UpdateLine(index, data)
 		-- TODO: scrolling
 	end
 
+	Line:Show()
 	return Line
 end
 
