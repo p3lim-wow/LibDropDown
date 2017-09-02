@@ -107,6 +107,22 @@ function LibDropDownButtonMixin:Add(...)
 	self.Menu:AddLines(...)
 end
 
+--[[### LibDropDownButtonTemplate:Remove(...)
+
+See [LibDropDownMenuTemplate:RemoveLine()]().
+--]]
+function LibDropDownButtonMixin:Remove(...)
+	self.Menu:RemoveLine(...)
+end
+
+--[[### LibDropDownButtonTemplate:Clear(...)
+
+See [LibDropDownMenuTemplate:ClearLines()]().
+--]]
+function LibDropDownButtonMixin:Clear()
+	self.Menu:ClearLines()
+end
+
 --[[### LibDropDownButtonTemplate:Toggle()
 
 See [LibDropDownMenuTemplate:Toggle()]().
@@ -553,6 +569,41 @@ function LibDropDownMenuMixin:AddLine(data)
 	else
 		Line.Menu = nil
 	end
+end
+
+--[[### LibDropDownMenuTemplate:RemoveLine(_index_)
+
+Removes a specific line by index.
+
+- `index`: Number between 1 and [LibDropDownMenuTemplate:NumLines()]()
+--]]
+function LibDropDownMenuMixin:RemoveLine(index)
+	assert(index >= 1 and index <= self:NumLines(), 'index out of scope')
+	table.remove(self.data, index)
+	self.lines[index]:Hide()
+end
+
+--[[### LibDropDownMenuTemplate:ClearLines()
+
+Removes all lines in the menu.
+--]]
+function LibDropDownMenuMixin:ClearLines()
+	if(self.data) then
+		table.wipe(self.data)
+
+		for index, Line in next, self.lines do
+			Line:Hide()
+		end
+	end
+end
+
+--[[### LibDropDownMenuTemplate:NumLines()
+
+#### Returns
+- `numLines`: Number of lines in the menu
+--]]
+function LibDropDownMenuMixin:NumLines()
+	return #self.lines
 end
 
 --[[### LibDropDownMenuTemplate:SetStyle(_name_)
