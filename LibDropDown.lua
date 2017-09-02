@@ -252,7 +252,7 @@ function LibDropDownMenuMixin:OnLoad()
 
 	self:SetStyle()
 
-	table.insert(UISpecialFrames, self:GetDebugName())
+	table.insert(UIMenus, self:GetDebugName())
 
 	self.anchor = {'TOP', self:GetParent(), 'BOTTOM', 0, -12} -- 8, 22
 	self.anchorCursor = false
