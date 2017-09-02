@@ -101,7 +101,7 @@ end
 
 --[[### LibDropDownButtonTemplate:Add(...)
 
-See [LibDropDownMenuTemplate:AddLine()]().
+See [LibDropDownMenuTemplate:AddLines()]().
 --]]
 function LibDropDownButtonMixin:Add(...)
 	self.Menu:AddLines(...)
