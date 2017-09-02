@@ -267,13 +267,17 @@ function LibDropDownMenuMixin:OnShow()
 	local padding = self.parent.padding
 	local spacing = self.parent.spacing
 	local width = 0
-	local height = ((16 + spacing) * #self.lines) - spacing
+	local height = -spacing
 
 	for _, Line in next, self.lines do
-		local lineWidth = Line.Text:GetWidth() + 50
-		lineWidth = math.max(lineWidth, 100)
-		if(lineWidth > width) then
-			width = lineWidth
+		if(Line:IsShown()) then
+			local lineWidth = Line.Text:GetWidth() + 50
+			lineWidth = math.max(lineWidth, 100)
+			if(lineWidth > width) then
+				width = lineWidth
+			end
+
+			height = height + (16 + spacing)
 		end
 	end
 
