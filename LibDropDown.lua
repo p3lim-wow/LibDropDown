@@ -751,9 +751,9 @@ end
 function LibDropDownLineMixin:OnShow()
 	if(self.checked) then
 		if(self.isRadio) then
-			self:SetRadioState(self.checked())
+			self:SetRadioState(self:checked())
 		else
-			self:SetCheckedState(self.checked())
+			self:SetCheckedState(self:checked())
 		end
 	end
 end
