@@ -367,6 +367,8 @@ function LibDropDownMenuMixin:UpdateLine(index, data)
 	Line.args = data.args
 	Line.tooltip = data.tooltip
 	Line.tooltipTitle = data.tooltipTitle
+	Line.checked = nil
+	Line.isRadio = nil
 
 	Line.Radio:Hide()
 	Line.Expand:Hide()
@@ -471,17 +473,17 @@ function LibDropDownMenuMixin:UpdateLine(index, data)
 				Line.ColorSwatch:Show()
 			else
 				if(data.checked ~= nil) then
-					local checked = data.checked
-					if(type(checked) == 'function') then
-						-- evalutate if checked is a function
-						checked = checked()
-					end
-
 					Line.Radio:Show()
-					if(data.isRadio) then
-						Line:SetRadioState(checked)
+
+					if(type(data.checked) == 'function') then
+						Line.checked = data.checked
+						Line.isRadio = data.isRadio
 					else
-						Line:SetCheckedState(checked)
+						if(data.isRadio) then
+							Line:SetRadioState(data.checked)
+						else
+							Line:SetCheckedState(data.checked)
+						end
 					end
 				end
 			end
@@ -751,6 +753,16 @@ LibDropDownLineMixin = {}
 function LibDropDownLineMixin:OnLoad()
 	self:SetFrameLevel(self:GetParent():GetFrameLevel() + 2)
 	self.parent = self:GetParent().parent
+end
+
+function LibDropDownLineMixin:OnShow()
+	if(self.checked) then
+		if(self.isRadio) then
+			self:SetRadioState(self:checked())
+		else
+			self:SetCheckedState(self:checked())
+		end
+	end
 end
 
 function LibDropDownLineMixin:OnEnter()
