@@ -1,5 +1,6 @@
 <Ui>
 	<!-- Project -->
+	<Script file='LibStub/LibStub.lua'/>
 	<Script file='LibDropDown.lua'/>
 	<Script file='styles/default.lua'/>
 	<Script file='styles/menu.lua'/>

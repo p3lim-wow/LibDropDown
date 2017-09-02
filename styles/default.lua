@@ -1,4 +1,5 @@
-LibDropDown:RegisterStyle('DEFAULT', {
+local LDD = LibStub('LibDropDown')
+LDD:RegisterStyle('DEFAULT', {
 	padding = 18,
 	spacing = 2,
 	backdrop = {
