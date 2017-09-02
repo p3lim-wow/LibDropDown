@@ -464,12 +464,17 @@ function LibDropDownMenuMixin:UpdateLine(index, data)
 				Line.ColorSwatch:Show()
 			else
 				if(data.checked ~= nil) then
-					Line.Radio:Show()
+					local checked = data.checked
+					if(type(checked) == 'function') then
+						-- evalutate if checked is a function
+						checked = checked()
+					end
 
+					Line.Radio:Show()
 					if(data.isRadio) then
-						Line:SetRadioState(data.checked)
+						Line:SetRadioState(checked)
 					else
-						Line:SetCheckedState(data.checked)
+						Line:SetCheckedState(checked)
 					end
 				end
 			end
@@ -512,7 +517,7 @@ Everything™ is optional, some are exclusive with others.
 	- `tooltip`: Tooltip contents _(string)_
 	- `tooltipTitle`: Tooltip title _(string)_
 	- `tooltipWhileDisabled`: Enable tooltips while disabled _(boolean)_
-	- `checked`: Show or hide a checkbox _(boolean)_
+	- `checked`: Show or hide a checkbox _(boolean/function)_
 	- `isRadio`: Turns the checkbox into a radio button _(boolean)_
 	- `isColorPicker`: Adds a color picker to the line _(boolean)_
 	- `colorR`: Red color channel, 0-1 _(number)_
