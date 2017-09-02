@@ -807,7 +807,7 @@ function LibDropDownLineMixin:OnClick(button)
 		ShowUIPanel(ColorPickerFrame)
 		PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON)
 	else
-		pcall(self.func, button, unpack(self.args or {}))
+		pcall(self.func, self, button, unpack(self.args or {}))
 	end
 
 	if(not self.keepShown) then
