@@ -369,6 +369,7 @@ function LibDropDownMenuMixin:UpdateLine(index, data)
 	Line.tooltipTitle = data.tooltipTitle
 	Line.checked = nil
 	Line.isRadio = nil
+	Line.keepShown = data.keepShown
 
 	Line.Radio:Hide()
 	Line.Expand:Hide()
@@ -522,6 +523,7 @@ Everything™ is optional, some are exclusive with others.
 	- `isSpacer`: Turns the line into a spacer _(boolean)_
 	- `func`: Function to execute when clicking the line _(function)_  
 	  Arguments passed: `button`, `args` (unpacked).
+	- `keepShown`: Keeps the dropdown shown after clicking the line _(boolean)_
 	- `args`: Table of arguments to pass through to the click function _(table)_
 	- `tooltip`: Tooltip contents _(string)_
 	- `tooltipTitle`: Tooltip title _(string)_
