@@ -3,7 +3,7 @@ package-as: LibDropDown
 enable-nolib-creation: no
 
 externals:
-  LibStub: svn://svn.wowace.com/wow/libstub/mainline/tags/1.0
+  LibStub: https://repos.wowace.com/wow/libstub/trunk
 
 required-dependencies:
   - libstub
@@ -11,3 +11,4 @@ required-dependencies:
 ignore:
   - README.md
   - tests
+  - utils
