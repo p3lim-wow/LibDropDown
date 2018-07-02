@@ -38,6 +38,8 @@ Register a style for use with [Button:SetStyle(name)](Button#buttonsetstylename)
 	* `gap`: space between submenus _(number)_
 	* `padding`: space between menu contents and backdrop border _(number)_
 	* `spacing`: space between lines in menus _(number)_
+	* `minWidth`: minimum width of the menus _(number, default = 100)_
+	* `maxWidth`: maximum width of the menus _(number, optional)_
 	* `backdrop`: standard [Backdrop](http://wowprogramming.com/docs/widgets/Frame/SetBackdrop) _(table)_
 	* `backdropColor`: color object, see notes _(object)_
 	* `backdropBorderColor`: color object, see notes _(object)_
