@@ -76,7 +76,10 @@ function menuMixin:Toggle()
 end
 
 --[[ Menu:UpdateLine(_index, data_)
-TBD
+Update a line with the given index with the supplied data.
+
+* `index`: menu line index _(integer)_
+* `data`: line data _(table)_ (see [Menu:AddLine(_data_)](Menu#menuaddlinedata))
 --]]
 function menuMixin:UpdateLine(index, data)
 	local Line = self.lines[index]
