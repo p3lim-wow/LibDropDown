@@ -30,108 +30,131 @@ local function OnHide()
 end
 
 local buttonMixin = {}
---[[
+--[[ Button:Add(_..._)
+See [Menu:AddLines()](Menu#menuaddlines).
 --]]
 function buttonMixin:Add(...)
 	self.Menu:AddLines(...)
 end
 
---[[
+--[[ Button:Remove(_..._)
+See [Menu:RemoveLine()](Menu#menuremoveline).
 --]]
 function buttonMixin:Remove(...)
 	self.Menu:RemoveLine(...)
 end
 
---[[
+--[[ Button:Clear()
+See [Menu:ClearLines()](Menu#menuclearlines)
 --]]
 function buttonMixin:Clear()
 	self.Menu:ClearLines()
 end
 
---[[
+--[[ Button:Toggle()
+See [Menu:Toggle()](Menu#menutoggle).
 --]]
 function buttonMixin:Toggle()
 	self.Menu:Toggle()
 end
 
---[[
+--[[ Button:SetAnchor(_..._)
+See [Menu:SetAnchor(_point, anchor, relativePoint, x, y_)](Menu#menusetanchorpointanchorrelativepointxy).
 --]]
 function buttonMixin:SetAnchor(...)
 	self.Menu:SetAnchor(...)
 end
 
---[[
+--[[ Button:GetAnchor()
+See [Menu:GetAnchor()](Menu#menugetanchor).
 --]]
 function buttonMixin:GetAnchor()
 	return self.Menu:GetAnchor()
 end
 
---[[
+--[[ Button:SetAnchorCursor(_flag_)
+See [Menu:SetAnchorCursor(_flag_)](Menu#menusetanchorcursorflag).
 --]]
 function buttonMixin:SetAnchorCursor(...)
 	self.Menu:SetAnchorCursor(...)
 end
 
---[[
+--[[ Button:IsAnchorCursor()
+See [Menu:IsAnchorCursor()](Menu#menuisanchorcursor).
 --]]
 function buttonMixin:IsAnchorCursor()
 	return self.Menu:IsAnchorCursor()
 end
 
---[[
+--[[ Button:SetStyle(...)
+See [Menu:SetStyle(_name_)](Menu#menusetstylename).
 --]]
 function buttonMixin:SetStyle(...)
 	self.Menu:SetStyle(...)
 end
 
---[[
+--[[ Button:GetStyle()
+See [Menu:GetStyle()](Menu#menugetstyle).
 --]]
 function buttonMixin:GetStyle()
 	return self.Menu:GetStyle()
 end
 
---[[
+--[[ Button:SetTimeout(_timeout_)
+See [Menu:SetTimeout(_timeout_)](Menu#menusettimeouttimeout).
 --]]
 function buttonMixin:SetTimeout(...)
 	self.Menu:SetTimeout(...)
 end
 
---[[
+--[[ Button:GetTimeout()
+See [Menu:GetTimeout()](Menu#menugettimeout).
 --]]
 function buttonMixin:GetTimeout()
 	return self.Menu:GetTimeout()
 end
 
---[[
+--[[ Button:SetJustifyH(_..._)
+See [Widget:SetJustifyH](http://wowprogramming.com/docs/widgets/FontInstance/SetJustifyH).
 --]]
 function buttonMixin:SetJustifyH(...)
 	self.Text:SetJustifyH(...)
 end
 
---[[
+--[[ Button:GetJustifyH()
+See [Widget:GetJustifyH](http://wowprogramming.com/docs/widgets/FontInstance/GetJustifyH).
 --]]
 function buttonMixin:GetJustifyH()
 	return self.Text:GetJustifyH()
 end
 
---[[
+--[[ Button:SetText(_..._)
+See [Widget:SetText](http://wowprogramming.com/docs/widgets/Button/SetText).
 --]]
 function buttonMixin:SetText(...)
 	self.Text:SetText(...)
 end
 
---[[
+--[[ Button:GetText()
+See [Widget:GetText](http://wowprogramming.com/docs/widgets/Button/GetText).
 --]]
 function buttonMixin:GetText()
 	return self.Text:GetText()
 end
 
---[[
+--[[ Button:SetFormattedText(_..._)
+See [Widget:SetFormattedText](http://wowprogramming.com/docs/widgets/Button/SetFormattedText).
 --]]
 function buttonMixin:SetFormattedText(...)
 	self.Text:SetFormattedText(...)
 end
 
+--[[ lib:NewButton(_parent[, name]_)
+Creates and returns a new menu button object.
+
+* `parent`: parent for the new button _(string|object)_
+* `name`: name for the new button _(string, default = derived from parent)_
+--]]
 function lib:NewButton(parent, name)
 	assert(parent, 'A button requres a given parent')
 

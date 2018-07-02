@@ -64,9 +64,8 @@ local function OnLeave(self)
 end
 
 local menuMixin = {}
---[[### LibDropDownMenuTemplate:Toggle()
-
-Toggles the dropdown menu, closing all others.
+--[[ Menu:Toggle()
+Toggles the dropdown menu, closing all others (see [LibDropDown:CloseAll()](LibDropDown#libdropdowncloseall)).
 --]]
 function menuMixin:Toggle()
 	-- hide everything first
@@ -76,6 +75,9 @@ function menuMixin:Toggle()
 	self:SetShown(not self:IsShown())
 end
 
+--[[ Menu:UpdateLine(_index, data_)
+TBD
+--]]
 function menuMixin:UpdateLine(index, data)
 	local Line = self.lines[index]
 	if(not Line) then
@@ -220,12 +222,11 @@ function menuMixin:UpdateLine(index, data)
 	return Line
 end
 
---[[### LibDropDownMenuTemplate:AddLines(_..._)
-
-See [LibDropDownMenuTemplate:AddLine(_data_)], this one does the exact same thing, except  
+--[[ Menu:AddLines(_..._)
+See [Menu:AddLine(_data_)](Menu#menuaddlinedata), this one does the exact same thing, except  
 this one can add more than one line at a time.
 
-- `...`: One or more tables containing line information.
+* `...`: One or more tables containing line information.
 --]]
 function menuMixin:AddLines(...)
 	for index = 1, select('#', ...) do
@@ -233,62 +234,64 @@ function menuMixin:AddLines(...)
 	end
 end
 
---[[### LibDropDownMenuTemplate:AddLine(_data_)
-
+--[[ Menu:AddLine(_data_)
 Adds a line using the given data to the menu menu.  
 Everything™ is optional, some are exclusive with others.
 
-- `data`:
-	- `text`: Text to show on the line _(string)_
-	- `isTitle`: Turns the `text` into a title _(boolean)_
-	- `isSpacer`: Turns the line into a spacer _(boolean)_
-	- `func`: Function to execute when clicking the line _(function)_  
-	  Arguments passed: `button`, `args` (unpacked).
-	- `keepShown`: Keeps the dropdown shown after clicking the line _(boolean)_
-	- `args`: Table of arguments to pass through to the click function _(table)_
-	- `tooltip`: Tooltip contents _(string)_
-	- `tooltipTitle`: Tooltip title _(string)_
-	- `tooltipWhileDisabled`: Enable tooltips while disabled _(boolean)_
-	- `checked`: Show or hide a checkbox _(boolean/function)_
-	- `isRadio`: Turns the checkbox into a radio button _(boolean)_
-	- `isColorPicker`: Adds a color picker to the line _(boolean)_
-	- `colorR`: Red color channel, 0-1 _(number)_
-	- `colorG`: Green color channel, 0-1 _(number)_
-	- `colorB`: Blue color channel, 0-1 _(number)_
-	- `colorOpacity`: Alpha channel, 0-1 _(number)_
-	- `colorPickerCallback`: Callback function for the color picker _(function)_  
-	  Arguments passed: `color`, see [SharedXML\Util.lua's ColorMixin](https://www.townlong-yak.com/framexml/live/go/ColorMixin).
-	- `icon`: Texture path for the icon to embed into the start of `text` _(string)_
-	- `iconTexCoords`: Texture coordinates for cropping the `icon` _(array)_
-	- `iconWidth`: Width of the displayed `icon` _(number)_
-	- `iconHeight`: Height of the displayed `icon` _(number)_
-	- `iconFileWidth`: File width of the `icon` _(number)_
-	- `iconFileHeight`: File height of the `icon` _(number)_
-	- `atlas`: Atlas to embed into the start of `text` _(string)_
-	- `atlasWidth`: Width of the displayed `atlas` _(number)_
-	- `atlasHeight`: Height of the displayed `atlas` _(number)_
-	- `atlasOffsetX`: Horizontal offset for `atlas` _(number)_
-	- `atlasOffsetY`: Vertical offset for `atlas` _(number)_
-	- `atlasOffset`: Common offset for both axis for `atlas` _(number)_
-	- `disabled`: Disables the whole line _(boolean)_
-	- `texture`: Sets background texture that spans the line _(string)_
-	- `textureColor`: Sets the color of the background texture _([ColorMixin object](https://www.townlong-yak.com/framexml/live/go/ColorMixin))_
-	- `font`: Font to use for the line _(string)_
-	- `fontSize`: Font size to use for the line, requires `font` to be set _(number)_
-	- `fontFlags`: Font flags to use for the line, requires `font` to be set _(string)_
-	- `fontObject`: Font object to use for the line _(string/[FontInstance](http://wowprogramming.com/docs/widgets/FontInstance))_
-	- `menu`: Sub-menu for the current menu line _(array)_  
-	  This needs to contain one or more tables of `data` (all of the above) in an  
-	  indexed array. Can be chained.
+* `data`:
+	* `text`: Text to show on the line _(string)_
+	* `isTitle`: Turns the `text` into a title _(boolean)_
+	* `isSpacer`: Turns the line into a spacer _(boolean)_
+	* `func`: Function to execute when clicking the line _(function)_  
+		Arguments passed: `button`, `args` (unpacked).
+	* `keepShown`: Keeps the dropdown shown after clicking the line _(boolean)_
+	* `args`: Table of arguments to pass through to the click function _(table)_
+	* `tooltip`: Tooltip contents _(string)_
+	* `tooltipTitle`: Tooltip title _(string)_
+	* `tooltipWhileDisabled`: Enable tooltips while disabled _(boolean)_
+	* `checked`: Show or hide a checkbox _(boolean/function)_
+	* `isRadio`: Turns the checkbox into a radio button _(boolean)_
+	* `isColorPicker`: Adds a color picker to the line _(boolean)_
+	* `colorR`: Red color channel, 0-1 _(number)_
+	* `colorG`: Green color channel, 0-1 _(number)_
+	* `colorB`: Blue color channel, 0-1 _(number)_
+	* `colorOpacity`: Alpha channel, 0-1 _(number)_
+	* `colorPickerCallback`: Callback function for the color picker _(function)_  
+		Arguments passed: `color`, see [SharedXML\Util.lua's ColorMixin](https://www.townlong-yak.com/framexml/live/go/ColorMixin).
+	* `icon`: Texture path for the icon to embed into the start of `text` _(string)_
+	* `iconTexCoords`: Texture coordinates for cropping the `icon` _(array)_
+	* `iconWidth`: Width of the displayed `icon` _(number)_
+	* `iconHeight`: Height of the displayed `icon` _(number)_
+	* `iconFileWidth`: File width of the `icon` _(number)_
+	* `iconFileHeight`: File height of the `icon` _(number)_
+	* `atlas`: Atlas to embed into the start of `text` _(string)_
+	* `atlasWidth`: Width of the displayed `atlas` _(number)_
+	* `atlasHeight`: Height of the displayed `atlas` _(number)_
+	* `atlasOffsetX`: Horizontal offset for `atlas` _(number)_
+	* `atlasOffsetY`: Vertical offset for `atlas` _(number)_
+	* `atlasOffset`: Common offset for both axis for `atlas` _(number)_
+	* `disabled`: Disables the whole line _(boolean)_
+	* `texture`: Sets background texture that spans the line _(string)_
+	* `textureColor`: Sets the color of the background texture _([ColorMixin object](https://www.townlong-yak.com/framexml/live/go/ColorMixin))_
+	* `font`: Font to use for the line _(string)_
+	* `fontSize`: Font size to use for the line, requires `font` to be set _(number)_
+	* `fontFlags`: Font flags to use for the line, requires `font` to be set _(string)_
+	* `fontObject`: Font object to use for the line _(string/[FontInstance](http://wowprogramming.com/docs/widgets/FontInstance))_
+	* `menu`: Sub-menu for the current menu line _(array)_  
+		This needs to contain one or more tables of `data` (all of the above) in an  
+		indexed array. Can be chained.
+
 #### Notes
+
 The following are exclusive options, only one can be used at a time:
-- isSpacer
-- isTitle
-- menu
-- isColorPicker
-- checked
-- font
-- fontObject
+
+* `isSpacer`
+* `isTitle`
+* `menu`
+* `isColorPicker`
+* `checked`
+* `font`
+* `fontObject`
 --]]
 function menuMixin:AddLine(data)
 	if(not self.data) then
@@ -313,11 +316,10 @@ function menuMixin:AddLine(data)
 	end
 end
 
---[[### LibDropDownMenuTemplate:RemoveLine(_index_)
-
+--[[ Menu:RemoveLine(_index_)
 Removes a specific line by index.
 
-- `index`: Number between 1 and [LibDropDownMenuTemplate:NumLines()]()
+- `index`: Number between 1 and [Menu:NumLines()](Menu#menunumlines)
 --]]
 function menuMixin:RemoveLine(index)
 	assert(index >= 1 and index <= self:NumLines(), 'index out of scope')
@@ -325,8 +327,7 @@ function menuMixin:RemoveLine(index)
 	self.lines[index]:Hide()
 end
 
---[[### LibDropDownMenuTemplate:ClearLines()
-
+--[[ Menu:ClearLines()
 Removes all lines in the menu.
 --]]
 function menuMixin:ClearLines()
@@ -339,20 +340,17 @@ function menuMixin:ClearLines()
 	end
 end
 
---[[### LibDropDownMenuTemplate:NumLines()
-
-#### Returns
-- `numLines`: Number of lines in the menu
+--[[ Menu:NumLines()
+Returns the number of lines in the menu.
 --]]
 function menuMixin:NumLines()
 	return #self.lines
 end
 
---[[### LibDropDownMenuTemplate:SetStyle(_name_)
-
+--[[ Menu:SetStyle(_name_)
 Sets the active style for all menus related to this one.
 
-- `name`: Name of registered style (see [LDD:RegisterStyle]())
+- `name`: Name of registered style (see [LibDropDown:RegisterStyle](LibDropDown#libdropdownregisterstyle))
 --]]
 function menuMixin:SetStyle(name)
 	if(not name) then
@@ -380,19 +378,14 @@ function menuMixin:SetStyle(name)
 	self.Backdrop:SetBackdropBorderColor((data.backdropBorderColor or HIGHLIGHT_FONT_COLOR):GetRGBA())
 end
 
---[[### LibDropDownMenuTemplate:GetStyle()
-
-Gets the active style for this menu, and all menus related to this one.
-
-#### Returns
-- `name`: Name of registered style (see [LDD:RegisterStyle]())
+--[[ Menu:GetStyle()
+Returns the name of the active style for the menu (and child menus).
 --]]
 function menuMixin:GetStyle()
 	return self.parent.style
 end
 
---[[### LibDropDownMenuTemplate:SetAnchor(_point, anchor, relativePoint, x, y_)
-
+--[[ Menu:SetAnchor(_point, anchor, relativePoint, x, y_)
 Replaces the default anchor with a custom one.
 Exact same parameters as in [Widgets:SetPoint](http://wowprogramming.com/docs/widgets/Region/SetPoint), read that documentation instead.
 --]]
@@ -404,47 +397,33 @@ function menuMixin:SetAnchor(point, anchor, relativePoint, x, y)
 	self.parent.anchor[5] = y
 end
 
---[[### LibDropDownMenuTemplate:GetAnchor()
-
-Gets the registered anchor.
-
-#### Returns
-- `point`: Point on the menu the menu is anchored to the anchor.
-- `anchor`: The region the menu is anchored to.
-- `relativePoint`: Point on the anchor the menu is anchored to.
-- `x`: Horizontal offset, positive means shifted to the right.
-- `y`: Vertical offset, positive means shifted upwards.
+--[[ Menu:GetAnchor()
+Returns the point data for the registered anchor (see [Widgets:GetPoint](http://wowprogramming.com/docs/widgets/Region/GetPoint)).
 --]]
 function menuMixin:GetAnchor()
 	return unpack(self.parent.anchor)
 end
 
---[[### LibDropDownMenuTemplate:SetAnchorCursor(_state_)
-
+--[[ Menu:SetAnchorCursor(_state_)
 Allows the anchor to be overridden and places the menu on the cursor.
 
-- `state`: Enables/disables cursor anchoring _(boolean)_
+* `state`: Enables/disables cursor anchoring _(boolean)_
 --]]
 function menuMixin:SetAnchorCursor(state)
 	self.parent.anchorCursor = state
 end
 
---[[### LibDropDownMenuTemplate:IsAnchorCursor()
-
-States if the menu should be anchored to the cursor or not.
-
-#### Returns
-- `state`: `true`/`false` if the menu should be anchored to the cursor.
+--[[ Menu:IsAnchorCursor()
+Returns the boolean state of whether the menu should be anchored to the cursor or not.
 --]]
 function menuMixin:IsAnchorCursor()
 	return self.parent.anchorCursor
 end
 
---[[### LibDropDownMenuTemplate:SetTimeout(_timeout_)
-
+--[[ Menu:SetTimeout(_timeout_)
 Sets the amount of time before the menu automatically hides.
 
-- `timeout`: Sets the timeout in seconds before hiding the menu(s) _(number)_
+* `timeout`: Sets the timeout in seconds before hiding the menu(s) _(number)_
 --]]
 function menuMixin:SetTimeout(timeout)
 	self.parent.timeout = timeout
@@ -459,26 +438,18 @@ function menuMixin:SetTimeout(timeout)
 	end
 end
 
---[[### LibDropDownMenuTemplate:GetTimeout()
-
-Gets the amount of time before the menu automatically hides.
-
-#### Returns
-- `timeout`: The timeout in seconds before the menu hides
+--[[ Menu:GetTimeout()
+Returns the amount of time in seconds before the menu automatically hides itself.
 --]]
 function menuMixin:GetTimeout()
 	return self.parent.timeout
 end
 
---[[### LDD:NewMenu(_parent_, _name_)
+--[[ lib:NewMenu(_parent_, _name_)
+Creates and returns a new, empty dropdown [Menu](Menu).
 
-Creates a new, empty dropdown.
-
-- `parent`: Frame for parenting. _(frame/string)_
-- `name`: Global name for the menu. Falls back to `parent` name with suffix. _(string)_
-
-#### Returns
-- `Menu`: Menu object
+* `parent`: Frame for parenting. _(frame/string)_
+* `name`: Global name for the menu. Falls back to `parent` name with suffix. _(string)_
 --]]
 function lib:NewMenu(parent, name)
 	assert(parent, 'A menu requires a given parent')

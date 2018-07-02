@@ -80,11 +80,10 @@ local function OnClick(self, button)
 end
 
 local lineMixin = {}
---[[### LibDropDownLineTemplate:SetRadioState(_state_)
-
+--[[ Line:SetRadioState(_state_)
 Sets the state of a radio button.
 
-- `state`: Enables/disables a radio button _(boolean)_
+* `state`: Enables/disables a radio button _(boolean)_
 --]]
 function lineMixin:SetRadioState(state)
 	self.Radio.state = state
@@ -96,22 +95,17 @@ function lineMixin:SetRadioState(state)
 	end
 end
 
---[[### LibDropDownLineTemplate:GetRadioState()
-
-Gets the state of a radio button.
-
-#### Returns
-- `state`: `true`/`false` state of the radio button _(boolean)_
+--[[ Line:GetRadioState()
+Returns the current boolean state of a radio button.
 --]]
 function lineMixin:GetRadioState()
 	return self.Radio.state
 end
 
---[[### LibDropDownLineTemplate:SetCheckedState(_state_)
-
+--[[ Line:SetCheckedState(_state_)
 Sets the state of a checkbutton.
 
-- `state`: Enables/disables a checkbutton _(boolean)_
+* `state`: Enables/disables a checkbutton _(boolean)_
 --]]
 function lineMixin:SetCheckedState(state)
 	self.Radio.state = state
@@ -123,19 +117,14 @@ function lineMixin:SetCheckedState(state)
 	end
 end
 
---[[### LibDropDownLineTemplate:GetCheckedState()
-
-Gets the state of a checkbutton.
-
-#### Returns
-- `state`: `true`/`false` state of the checkbutton _(boolean)_
+--[[ Line:GetCheckedState()
+Returns the current boolean state of a checkbutton.
 --]]
 function lineMixin:GetCheckedState()
 	return self.Radio.state
 end
 
---[[### LibDropDownLineTemplate:SetIcon(_..._)
-
+--[[ Line:SetIcon(_..._)
 See [FrameXML/Util.lua's CreateTextureMarkup](https://www.townlong-yak.com/framexml/live/go/CreateTextureMarkup)
 --]]
 function lineMixin:SetIcon(...)
@@ -144,16 +133,14 @@ function lineMixin:SetIcon(...)
 	self:UpdateText()
 end
 
---[[### LibDropDownLineTemplate:GetIcon()
-
+--[[ Line:GetIcon()
 See [FrameXML/Util.lua's CreateTextureMarkup](https://www.townlong-yak.com/framexml/live/go/CreateTextureMarkup)
 --]]
 function lineMixin:GetIcon()
 	return self.__icon
 end
 
---[[### LibDropDownLineTemplate:SetAtlas(_..._)
-
+--[[ Line:SetAtlas(_..._)
 See [FrameXML/Util.lua's CreateAtlasMarkup](https://www.townlong-yak.com/framexml/live/go/CreateAtlasMarkup)
 --]]
 function lineMixin:SetAtlas(...)
@@ -162,23 +149,36 @@ function lineMixin:SetAtlas(...)
 	self:UpdateText()
 end
 
---[[### LibDropDownLineTemplate:GetAtlas()
-
+--[[ Line:GetAtlas()
 See [FrameXML/Util.lua's CreateAtlasMarkup](https://www.townlong-yak.com/framexml/live/go/CreateAtlasMarkup)
 --]]
 function lineMixin:GetAtlas()
 	return self.__atlas
 end
 
+--[[ Line:SetText(_text_)
+Sets the Line text.
+
+* `text` - text to set on the Line _(string)_
+--]]
 function lineMixin:SetText(text)
 	self:SetFormattedText('%s%s', self.__icon or self.__atlas or '', text)
 end
 
+--[[ Line:UpdateText()
+Updates the Line text.
+--]]
 function lineMixin:UpdateText()
 	local text = self:GetText():gsub('|T.*|t'):gsub('|A.*|a')
 	self:SetText(text)
 end
 
+--[[ Line:SetTexture(_texture[, color]_)
+Sets the texture (and optional color) on the Line.
+
+* `texture` - texture to set _(string)_
+* `color` - color to set _(object)_
+--]]
 function lineMixin:SetTexture(texture, color)
 	self.Texture:SetTexture(texture)
 	if(color) then
@@ -190,7 +190,11 @@ function lineMixin:SetTexture(texture, color)
 	self.Texture:Show()
 end
 
+--[[ LibDropDown:CreateLine(_Menu_)
+Creates and returns a new [Line](Line) object for the given [Menu](Menu).
 
+* `Menu` - [Menu](Menu) object to parent the new [Line](Line) _(object)_
+--]]
 function lib:CreateLine(Menu)
 	local Line = Mixin(CreateFrame('Button', nil, Menu), lineMixin)
 	Line:SetSize(1, 16)
