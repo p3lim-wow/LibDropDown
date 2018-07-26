@@ -11,7 +11,12 @@ local function OnShow(self)
 
 	for _, Line in next, self.lines do
 		if(Line:IsShown()) then
-			local lineWidth = Line.Text:GetWidth() + 50
+			local lineWidth
+			if(Line.Text:IsShown()) then
+				lineWidth = Line.Text:GetWidth()
+			else
+				lineWidth = Line:GetTextWidth()
+			end
 			lineWidth = math.max(lineWidth, minWidth)
 
 			if(maxWidth) then
@@ -133,16 +138,16 @@ function menuMixin:UpdateLine(index, data)
 			Line.Text:Show()
 		else
 			if(data.fontObject) then
-			Line:SetNormalFontObject(data.fontObject)
-			Line:SetHighlightFontObject(data.fontObject)
-			Line:SetDisabledFontObject(data.fontObject)
-		else
-			Line:SetNormalFontObject(self.parent.normalFont)
-			Line:SetHighlightFontObject(self.parent.highlightFont)
-			Line:SetDisabledFontObject(self.parent.disabledFont)
-		end
+				Line:SetNormalFontObject(data.fontObject)
+				Line:SetHighlightFontObject(data.fontObject)
+				Line:SetDisabledFontObject(data.fontObject)
+			else
+				Line:SetNormalFontObject(self.parent.normalFont)
+				Line:SetHighlightFontObject(self.parent.highlightFont)
+				Line:SetDisabledFontObject(self.parent.disabledFont)
+			end
 
-		Line:SetText(text)
+			Line:SetText(text)
 		end
 
 		Line:SetTexture(data.texture, data.textureColor)
