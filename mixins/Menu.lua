@@ -112,7 +112,6 @@ function menuMixin:UpdateLine(index, data)
 	if(data.isSpacer) then
 		Line.Spacer:Show()
 		Line:EnableMouse(false)
-		return Line
 	elseif(data.isTitle) then
 		local text = data.text
 		assert(text and type(text) == 'string', 'Missing required data "text"')
