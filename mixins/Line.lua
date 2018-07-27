@@ -169,7 +169,7 @@ end
 Updates the Line text.
 --]]
 function lineMixin:UpdateText()
-	local text = self:GetText():gsub('|T.*|t'):gsub('|A.*|a')
+	local text = self:GetText():gsub('|T.*|t', ''):gsub('|A.*|a', '')
 	self:SetText(text)
 end
 
