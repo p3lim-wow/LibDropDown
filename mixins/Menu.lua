@@ -108,11 +108,12 @@ function menuMixin:UpdateLine(index, data)
 	Line.Expand:Hide()
 	Line.ColorSwatch:Hide()
 	Line.Texture:Hide()
+	Line.Spacer:Hide()
 
 	if(data.isSpacer) then
+		Line:SetText("")
 		Line.Spacer:Show()
 		Line:EnableMouse(false)
-		return Line
 	elseif(data.isTitle) then
 		local text = data.text
 		assert(text and type(text) == 'string', 'Missing required data "text"')
@@ -121,7 +122,6 @@ function menuMixin:UpdateLine(index, data)
 		Line:SetNormalFontObject(self.parent.titleFont)
 	else
 		Line:EnableMouse(true)
-		Line.Spacer:Hide()
 
 		if(data.font) then
 			Line.Text:SetFont(data.font, data.fontSize or 12, data.fontFlags)
