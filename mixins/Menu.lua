@@ -117,7 +117,7 @@ function menuMixin:UpdateLine(index, data)
 	Line.Spacer:Hide()
 
 	if(data.isSpacer) then
-		Line:SetText("")
+		Line:SetText('')
 		Line.Spacer:Show()
 		Line:EnableMouse(false)
 	elseif(data.isTitle) then
