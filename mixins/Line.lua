@@ -190,6 +190,27 @@ function lineMixin:SetTexture(texture, color)
 	self.Texture:Show()
 end
 
+--[[ Line:Reset()
+Resets the state of the Line back to default.  
+Is called at the start of [Menu:UpdateLine()](Menu#menuupdatelineindexdata).
+--]]
+function lineMixin:Reset()
+	self.checked = nil
+	self.isRadio = nil
+	self.__icon = nil
+	self.__atlas = nil
+
+	self.Texture:Hide()
+	self.Highlight:Hide()
+	self.Radio:Hide()
+	self.Expand:Hide()
+	self.Spacer:Hide()
+	self.Text:Hide()
+	self.ColorSwatch:Hide()
+
+	self:SetText('')
+end
+
 --[[ LibDropDown:CreateLine(_Menu_)
 Creates and returns a new [Line](Line) object for the given [Menu](Menu).
 
@@ -211,14 +232,12 @@ function lib:CreateLine(Menu)
 
 	local Texture = Line:CreateTexture('$parentTexture', 'BACKGROUND')
 	Texture:SetAllPoints()
-	Texture:Hide()
 	Line.Texture = Texture
 
 	local Highlight = Line:CreateTexture('$parentHighlight', 'BACKGROUND')
 	Highlight:SetAllPoints()
 	Highlight:SetBlendMode('ADD')
 	Highlight:SetTexture(Menu.parent.highlightTexture or 'Interface\\QuestFrame\\UI-QuestTitleHighlight')
-	Highlight:Hide()
 	Line.Highlight = Highlight
 
 	local Radio = Line:CreateTexture('$parentRadio', 'ARTWORK')
@@ -239,7 +258,6 @@ function lib:CreateLine(Menu)
 	Spacer:SetSize(1, 1)
 	Spacer:SetAlpha(0.5)
 	Spacer:SetTexture('Interface\\ChatFrame\\ChatFrameBackground')
-	Spacer:Hide()
 	Line.Spacer = Spacer
 
 	local Text = Line:CreateFontString('$parentText', 'ARTWORK', 'GameFontHighlightSmallLeft')

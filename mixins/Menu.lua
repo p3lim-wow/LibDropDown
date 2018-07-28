@@ -101,23 +101,15 @@ function menuMixin:UpdateLine(index, data)
 		table.insert(self.lines, Line)
 	end
 
+	Line:Reset()
+
 	Line.func = data.func
 	Line.args = data.args
 	Line.tooltip = data.tooltip
 	Line.tooltipTitle = data.tooltipTitle
-	Line.checked = nil
-	Line.isRadio = nil
 	Line.keepShown = data.keepShown
 
-	Line.Radio:Hide()
-	Line.Expand:Hide()
-	Line.ColorSwatch:Hide()
-	Line.Texture:Hide()
-	Line.Text:Hide()
-	Line.Spacer:Hide()
-
 	if(data.isSpacer) then
-		Line:SetText('')
 		Line.Spacer:Show()
 		Line:EnableMouse(false)
 	elseif(data.isTitle) then
