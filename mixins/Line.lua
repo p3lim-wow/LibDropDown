@@ -129,7 +129,7 @@ See [FrameXML/Util.lua's CreateTextureMarkup](https://www.townlong-yak.com/frame
 --]]
 function lineMixin:SetIcon(...)
 	local markup = CreateTextureMarkup(...)
-	self.__icon = markup
+	self.__icon = markup..' '
 	self:UpdateText()
 end
 
@@ -145,7 +145,7 @@ See [FrameXML/Util.lua's CreateAtlasMarkup](https://www.townlong-yak.com/framexm
 --]]
 function lineMixin:SetAtlas(...)
 	local markup = CreateAtlasMarkup(...)
-	self.__atlas = markup
+	self.__atlas = markup..' '
 	self:UpdateText()
 end
 
@@ -169,7 +169,7 @@ end
 Updates the Line text.
 --]]
 function lineMixin:UpdateText()
-	local text = self:GetText():gsub('|T.*|t'):gsub('|A.*|a')
+	local text = self:GetText():gsub('|T.*|t', ''):gsub('|A.*|a', '')
 	self:SetText(text)
 end
 
