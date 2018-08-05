@@ -1,3 +1,7 @@
+--[[ Menu:header
+Documentation for the [Menu](Menu) object.
+Created with [LibDropDown:NewMenu()](LibDropDown#libdropdownnewmenuparent-name).
+--]]
 local lib = LibStub('LibDropDown')
 
 local function OnShow(self)

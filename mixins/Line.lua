@@ -1,3 +1,7 @@
+--[[ Line:header
+Documentation for the [Line](Line) object.
+Created with [LibDropDown:CreateLine()](LibDropDown#libdropdowncreatelinemenu).
+--]]
 local lib = LibStub('LibDropDown')
 
 local function OnShow(self)

@@ -1,3 +1,9 @@
+--[[ Button:header
+Documentation for the [Button](Button) object.
+Created with [LibDropDown:NewButton()](LibDropDown#libdropdownnewbuttonparent-name).
+
+For all intents and purposes, this is the equivalent to [UIDropDownMenuButtonTemplate](https://www.townlong-yak.com/framexml/live/go/UIDropDownMenuButtonTemplate).
+--]]
 local lib = LibStub('LibDropDown')
 
 local function OnEnter(self)
