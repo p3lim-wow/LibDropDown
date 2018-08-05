@@ -460,7 +460,7 @@ function menuMixin:GetTimeout()
 	return self.parent.timeout
 end
 
---[[ lib:NewMenu(_parent_, _name_)
+--[[ LibDropDown:NewMenu(_parent_, _name_)
 Creates and returns a new, empty dropdown [Menu](Menu).
 
 * `parent`: Frame for parenting. _(frame/string)_

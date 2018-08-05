@@ -149,7 +149,7 @@ function buttonMixin:SetFormattedText(...)
 	self.Text:SetFormattedText(...)
 end
 
---[[ lib:NewButton(_parent[, name]_)
+--[[ LibDropDown:NewButton(_parent[, name]_)
 Creates and returns a new menu button object.
 
 * `parent`: parent for the new button _(string|object)_
