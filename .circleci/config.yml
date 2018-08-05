@@ -1,0 +1,21 @@
+version: 2
+jobs:
+  docs:
+    docker:
+      - image: p3lim/lua-doc-parser:latest
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "SHA256:2iHH/totnyLLKeeKzchOSpDb4kj9c/KdJWFShzMWqBA"
+      - checkout
+      - run: build
+workflows:
+  version: 2
+  docs:
+    jobs:
+      - docs:
+          filters:
+            tags:
+              ignore: /.*/
+            branches:
+              only: /.*/
