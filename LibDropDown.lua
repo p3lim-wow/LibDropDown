@@ -59,13 +59,13 @@ Register a style for use with [Button:SetStyle(name)](Button#buttonsetstylename)
 	See [CreateColor](https://www.townlong-yak.com/framexml/live/go/CreateColor).
 * `radioTexture` is dependant on texture coordinates, see [Interface/Common/UI-DropDownRadioChecks](https://github.com/Gethe/wow-ui-textures/blob/live/COMMON/UI-DropDownRadioChecks.PNG).
 --]]
-function LibDropDown:RegisterStyle(name, data)
+function lib:RegisterStyle(name, data)
 	self.styles[name] = data
 end
 
---[[ lib:IsStyleRegistered(_name_)
+--[[ LibDropDown:IsStyleRegistered(_name_)
 Returns `true`/`false` whether a style with the given name is already registered or not.
 --]]
-function LibDropDown:IsStyleRegistered(name)
+function lib:IsStyleRegistered(name)
 	return not not self.styles[name]
 end
