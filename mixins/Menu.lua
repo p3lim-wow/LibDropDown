@@ -486,7 +486,7 @@ function lib:NewMenu(parent, name)
 	Menu:SetScript('OnEnter', OnEnter)
 	Menu:SetScript('OnLeave', OnLeave)
 
-	local Backdrop = CreateFrame('Frame', '$parentBackdrop', Menu)
+	local Backdrop = CreateFrame('Frame', '$parentBackdrop', Menu, BackdropTemplateMixin and 'BackdropTemplate')
 	Backdrop:SetPoint('CENTER')
 	Menu.Backdrop = Backdrop
 
