@@ -1,7 +1,6 @@
 # LibDropDown
 
-This is an addon for the popular MMORPG "World of Warcraft".  
-It can be downloaded at [Curse](https://mods.curse.com/addons/wow/libdropdown) or at [WoWInterface](https://wowinterface.com/downloads/info00000).
+This is a library addon for the popular MMORPG "World of Warcraft.
 
 ## Description
 
