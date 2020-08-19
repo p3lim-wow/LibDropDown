@@ -164,7 +164,6 @@ function lib:NewButton(parent, name)
 
 	local Button = Mixin(CreateFrame('Frame', (name or parent:GetDebugName() .. 'MenuButton'), parent), buttonMixin, CallbackRegistryBaseMixin or CallbackRegistryMixin)
 	Button:SetSize(165, 32)
-	Button:SetScript('OnShow', OnShow)
 	Button:SetScript('OnHide', OnHide)
 	Button.Menu = lib:NewMenu(Button)
 
