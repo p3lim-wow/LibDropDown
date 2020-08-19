@@ -164,7 +164,7 @@ function menuMixin:UpdateLine(index, data)
 
 		if(data.atlas) then
 			local exists, atlasWidth, atlasHeight = GetAtlasInfo(data.atlas)
-			assert(exists, 'No atlas \'' .. exists .. '\' exists')
+			assert(exists, 'No atlas \'' .. data.atlas .. '\' exists')
 
 			local width = data.atlasWidth
 			local height = data.atlasHeight
