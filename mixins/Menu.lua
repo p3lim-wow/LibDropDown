@@ -477,7 +477,7 @@ function lib:NewMenu(parent, name)
 		parent = _G[parent]
 	end
 
-	local Menu = Mixin(CreateFrame('Button', (name or parent:GetDebugName() .. 'Menu'), parent), menuMixin, CallbackRegistryBaseMixin)
+	local Menu = Mixin(CreateFrame('Button', (name or parent:GetDebugName() .. 'Menu'), parent), menuMixin, CallbackRegistryBaseMixin or CallbackRegistryMixin)
 	Menu:Hide()
 	Menu:EnableMouse(true)
 	Menu:SetClampedToScreen(true)
