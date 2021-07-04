@@ -189,7 +189,7 @@ function lib:NewButton(parent, name)
 	Middle:SetTexCoord(0.1953125, 0.8046875, 0, 1)
 	Button.Middle = Middle
 
-	local Text = Button:CreateFontString('$parentText', 'ARTWORK', nil, 'GameFontHighlightSmall')
+	local Text = Button:CreateFontString('$parentText', 'ARTWORK', 'GameFontHighlightSmall')
 	Text:SetPoint('RIGHT', Right, -43, 2)
 	Text:SetPoint('LEFT', Left, 27, 2)
 	Text:SetSize(0, 10)
