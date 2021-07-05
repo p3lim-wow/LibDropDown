@@ -48,9 +48,10 @@ read_globals = {
 
 	-- SharedXML functions
 	'Mixin', -- SharedXML/Mixin.lua
-	'CreateColor', -- SharedXML/Color.lua
-	'CreateTextureMarkup', -- SharedXML/TextureUtil.lua
 	'CreateAtlasMarkup', -- SharedXML/TextureUtil.lua
+	'CreateColor', -- SharedXML/Color.lua
+	'CreateFromMixins', -- SharedXML/Mixin.lua
+	'CreateTextureMarkup', -- SharedXML/TextureUtil.lua
 
 	-- GlobalStrings
 	'HIGHLIGHT_FONT_COLOR',
