@@ -1,8 +1,12 @@
-local Menu = CreateFrame('Frame', nil, UIParent, 'LibDropDownButtonTemplate')
-Menu:SetPoint('CENTER', 0, -50)
+local LDD = LibStub('LibDropDown')
+
+local Menu = LDD:NewButton(UIParent, 'LibDropDownTest')
+Menu:SetPoint('CENTER', 0, 200)
 Menu:SetJustifyH('LEFT')
 Menu:SetStyle('DEFAULT') -- can be omitted, defaults to 'DEFAULT' 
 Menu:SetText('TestDropDown')
+
+Menu:SetCheckAlignment('LEFT')
 
 Menu:Add({text = 'This is a menu with a long title', isTitle = true})
 
