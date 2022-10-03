@@ -210,6 +210,18 @@ function menuMixin:UpdateLine(index, data)
 							Line:SetCheckedState(data.checked)
 						end
 					end
+
+					if self.parent.checkButtonAlignment == 'LEFT' then
+						Line.Radio:ClearAllPoints()
+						Line.Radio:SetPoint('LEFT', Line)
+						Line.Text:ClearAllPoints()
+						Line.Text:SetPoint('LEFT', Line.Radio, 'RIGHT', padding, 0)
+					else
+						Line.Radio:ClearAllPoints()
+						Line.Radio:SetPoint('RIGHT')
+						Line.Text:ClearAllPoints()
+						Line.Text:SetPoint('LEFT')
+					end
 				end
 			end
 		end
@@ -375,6 +387,7 @@ function menuMixin:SetStyle(name)
 	self.parent.radioTexture = data.radioTexture or [[Interface\Common\UI-DropDownRadioChecks]]
 	self.parent.highlightTexture = data.highlightTexture or [[Interface\QuestFrame\UI-QuestTitleHighlight]]
 	self.parent.expandTexture = data.expandTexture or [[Interface\ChatFrame\ChatFrameExpandArrow]]
+	self.parent.checkButtonAlignment = data.checkButtonAlignment or 'RIGHT'
 
 	self.Backdrop:SetBackdrop(data.backdrop)
 	self.Backdrop:SetBackdropColor((data.backdropColor or HIGHLIGHT_FONT_COLOR):GetRGBA())
@@ -421,6 +434,17 @@ Returns the boolean state of whether the menu should be anchored to the cursor o
 --]]
 function menuMixin:IsAnchorCursor()
 	return self.parent.anchorCursor
+end
+
+--[[ Menu:SetCheckAlignment(_alignment_)
+Sets the alignment of check/radio buttons within the menu.
+
+* `alignment`: Either "LEFT" or "RIGHT" (default) _(string)_
+--]]
+function menuMixin:SetCheckAlignment(alignment)
+	if alignment == 'LEFT' or alignment == 'RIGHT' then
+		self.parent.checkButtonAlignment = alignment
+	end
 end
 
 --[[ LibDropDown:NewMenu(_parent_, _name_)

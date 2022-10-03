@@ -135,6 +135,13 @@ function buttonMixin:SetFormattedText(...)
 	self.Text:SetFormattedText(...)
 end
 
+--[[ Button:SetCheckAlignment(...)
+See [Menu:SetCheckAlignment(...)](Menu#menusetcheckalignment).
+--]]
+function buttonMixin:SetCheckAlignment(...)
+	self.Menu:SetCheckAlignment(...)
+end
+
 --[[ LibDropDown:NewButton(_parent[, name]_)
 Creates and returns a new menu button object.
 
