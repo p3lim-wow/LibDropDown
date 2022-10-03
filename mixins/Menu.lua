@@ -21,6 +21,9 @@ local function OnShow(self)
 			else
 				lineWidth = Line:GetTextWidth()
 			end
+			if(Line.Radio:IsShown()) then
+				lineWidth = lineWidth + Line.Radio:GetWidth() + padding
+			end
 			lineWidth = math.max(lineWidth, minWidth)
 
 			if(maxWidth) then
