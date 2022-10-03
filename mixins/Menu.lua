@@ -76,6 +76,7 @@ function menuMixin:Toggle()
 	self:SetShown(not self:IsShown())
 end
 
+local dummyFontInstance = CreateFont('LibDropDownDummyFontObject')
 --[[ Menu:UpdateLine(_index, data_)
 Update a line with the given index with the supplied data.
 
@@ -98,13 +99,26 @@ function menuMixin:UpdateLine(index, data)
 	Line.tooltipTitle = data.tooltipTitle
 	Line.keepShown = data.keepShown
 
+	local fontName, fontSize, fontFlags
+	if(data.font) then
+		fontName = data.font
+		fontSize = data.fontSize or 12
+		fontFlags = data.fontFlags
+	elseif(data.disabled) then
+		dummyFontInstance:SetFontObject(data.fontObjectDisabled or self.parent.disabledFont)
+		fontName, fontSize, fontFlags = dummyFontInstance:GetFont()
+	else
+		dummyFontInstance:SetFontObject(data.fontObjectDisabled or self.parent.disabledFont)
+		fontName, fontSize, fontFlags = dummyFontInstance:GetFont()
+	end
+
 	if(data.isSpacer) then
 		Line.Spacer:Show()
 		Line:EnableMouse(false)
 	elseif(data.isTitle) then
 		local text = data.text
 		assert(text and type(text) == 'string', 'Missing required data "text"')
-		Line:SetText(text)
+		Line.Text:SetText(text)
 		Line:EnableMouse(false)
 		Line:SetNormalFontObject(self.parent.titleFont)
 	else
@@ -113,23 +127,8 @@ function menuMixin:UpdateLine(index, data)
 		local text = data.text
 		assert(text and type(text) == 'string', 'Missing required data "text"')
 
-		if(data.font) then
-			Line.Text:SetFont(data.font, data.fontSize or 12, data.fontFlags)
-			Line.Text:SetText(text)
-			Line.Text:Show()
-		else
-			if(data.fontObject) then
-				Line:SetNormalFontObject(data.fontObject)
-				Line:SetHighlightFontObject(data.fontObject)
-				Line:SetDisabledFontObject(data.fontObject)
-			else
-				Line:SetNormalFontObject(self.parent.normalFont)
-				Line:SetHighlightFontObject(self.parent.highlightFont)
-				Line:SetDisabledFontObject(self.parent.disabledFont)
-			end
-
-			Line:SetText(text)
-		end
+		Line.Text:SetFont(fontName, fontSize, fontFlags)
+		Line.Text:SetText(text)
 
 		Line:SetTexture(data.texture, data.textureColor)
 

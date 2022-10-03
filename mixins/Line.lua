@@ -160,15 +160,15 @@ Sets the Line text.
 * `text` - text to set on the Line _(string)_
 --]]
 function lineMixin:SetText(text)
-	self:SetFormattedText('%s%s', self.__icon or self.__atlas or '', text)
+	self.Text:SetFormattedText('%s%s', self.__icon or self.__atlas or '', text)
 end
 
 --[[ Line:UpdateText()
 Updates the Line text.
 --]]
 function lineMixin:UpdateText()
-	local text = self:GetText():gsub('|T.*|t', ''):gsub('|A.*|a', '')
-	self:SetText(text)
+	local text = self.Text:GetText():gsub('|T.*|t', ''):gsub('|A.*|a', '')
+	self.Text:SetText(text)
 end
 
 --[[ Line:SetTexture(_texture[, color]_)
@@ -203,10 +203,9 @@ function lineMixin:Reset()
 	self.Radio:Hide()
 	self.Expand:Hide()
 	self.Spacer:Hide()
-	self.Text:Hide()
 	self.ColorSwatch:Hide()
 
-	self:SetText('')
+	self.Text:SetText('')
 end
 
 --[[ LibDropDown:CreateLine(_Menu_)
