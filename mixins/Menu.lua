@@ -59,24 +59,6 @@ local function OnShow(self)
 		-- submenu
 		self:SetPoint('TOPLEFT', self:GetParent(), 'TOPRIGHT', self.parent.gap, 0)
 	end
-
-	-- start auto-hide timer
-	self.parent.timer:Play()
-end
-
-local function OnHide(self)
-	-- stop auto-hide timer
-	self.parent.timer:Stop()
-end
-
-local function OnEnter(self)
-	-- stop auto-hide timer
-	self.parent.timer:Stop()
-end
-
-local function OnLeave(self)
-	-- start auto-hide timer
-	self.parent.timer:Play()
 end
 
 local menuMixin = {}
@@ -439,31 +421,6 @@ function menuMixin:IsAnchorCursor()
 	return self.parent.anchorCursor
 end
 
---[[ Menu:SetTimeout(_timeout_)
-Sets the amount of time before the menu automatically hides.
-
-* `timeout`: Sets the timeout in seconds before hiding the menu(s) _(number)_
---]]
-function menuMixin:SetTimeout(timeout)
-	self.parent.timeout = timeout
-
-	local timer = self.parent.timer
-	timer:GetAnimations()[1]:SetDuration(timeout)
-
-	if(timer:IsPlaying()) then
-		-- restart the current timer
-		timer:Stop()
-		timer:Play()
-	end
-end
-
---[[ Menu:GetTimeout()
-Returns the amount of time in seconds before the menu automatically hides itself.
---]]
-function menuMixin:GetTimeout()
-	return self.parent.timeout
-end
-
 --[[ LibDropDown:NewMenu(_parent_, _name_)
 Creates and returns a new, empty dropdown [Menu](Menu).
 
@@ -482,9 +439,6 @@ function lib:NewMenu(parent, name)
 	Menu:EnableMouse(true)
 	Menu:SetClampedToScreen(true)
 	Menu:SetScript('OnShow', OnShow)
-	Menu:SetScript('OnHide', OnHide)
-	Menu:SetScript('OnEnter', OnEnter)
-	Menu:SetScript('OnLeave', OnLeave)
 
 	local Backdrop = CreateFrame('Frame', '$parentBackdrop', Menu, BackdropTemplateMixin and 'BackdropTemplate')
 	Backdrop:SetPoint('CENTER')
@@ -501,16 +455,6 @@ function lib:NewMenu(parent, name)
 	Menu.anchor = {'TOP', Menu:GetParent(), 'BOTTOM', 0, -12} -- 8, 22
 	Menu.anchorCursor = false
 	Menu:SetClampRectInsets(-20, 20, 20, -20)
-
-	if(Menu.parent == Menu) then
-		-- create auto-hide timer on first menu
-		local animations = Menu:CreateAnimationGroup()
-		animations:CreateAnimation():SetDuration(Menu.timeout or 5)
-		animations:SetScript('OnFinished', function()
-			lib:CloseAll()
-		end)
-		Menu.timer = animations
-	end
 
 	lib.dropdowns[Menu] = true
 	return Menu

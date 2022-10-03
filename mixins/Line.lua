@@ -37,9 +37,6 @@ local function OnEnter(self)
 		GameTooltip:AddLine(self.tooltip, nil, nil, nil, true)
 		GameTooltip:Show()
 	end
-
-	-- cancel auto-hide timer
-	self:GetParent().parent.timer:Stop()
 end
 
 local function OnLeave(self)
@@ -48,9 +45,6 @@ local function OnLeave(self)
 	if(self.tooltip) then
 		GameTooltip:Hide()
 	end
-
-	-- start auto-hide timer
-	self:GetParent().parent.timer:Play()
 end
 
 local function OnClick(self, button)

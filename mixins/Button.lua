@@ -100,20 +100,6 @@ function buttonMixin:GetStyle()
 	return self.Menu:GetStyle()
 end
 
---[[ Button:SetTimeout(_timeout_)
-See [Menu:SetTimeout(_timeout_)](Menu#menusettimeouttimeout).
---]]
-function buttonMixin:SetTimeout(...)
-	self.Menu:SetTimeout(...)
-end
-
---[[ Button:GetTimeout()
-See [Menu:GetTimeout()](Menu#menugettimeout).
---]]
-function buttonMixin:GetTimeout()
-	return self.Menu:GetTimeout()
-end
-
 --[[ Button:SetJustifyH(_..._)
 See [Widget:SetJustifyH](http://wowprogramming.com/docs/widgets/FontInstance/SetJustifyH).
 --]]
