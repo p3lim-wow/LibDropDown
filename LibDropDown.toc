@@ -5,6 +5,8 @@
 ## Notes: Library that allows easy creation of DropDown menus
 ## OptionalDeps: LibStub
 
-LibStub\LibStub.lua
+#@non-debug@
+# LibStub\LibStub.lua
+#@end-non-debug@
 
 embed.xml
