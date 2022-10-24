@@ -215,7 +215,7 @@ function menuMixin:UpdateLine(index, data)
 						Line.Radio:ClearAllPoints()
 						Line.Radio:SetPoint('LEFT', Line)
 						Line.Text:ClearAllPoints()
-						Line.Text:SetPoint('LEFT', Line.Radio, 'RIGHT', padding, 0)
+						Line.Text:SetPoint('LEFT', Line.Radio, 'RIGHT')
 					else
 						Line.Radio:ClearAllPoints()
 						Line.Radio:SetPoint('RIGHT')
@@ -347,7 +347,7 @@ function menuMixin:ClearLines()
 	if(self.data) then
 		table.wipe(self.data)
 
-		for index, Line in next, self.lines do
+		for _, Line in next, self.lines do
 			Line:Hide()
 		end
 	end
@@ -460,13 +460,13 @@ function lib:NewMenu(parent, name)
 		parent = _G[parent]
 	end
 
-	local Menu = Mixin(CreateFrame('Button', (name or parent:GetDebugName() .. 'Menu'), parent), menuMixin, CallbackRegistryBaseMixin or CallbackRegistryMixin)
+	local Menu = Mixin(CreateFrame('Button', (name or parent:GetDebugName() .. 'Menu'), parent), menuMixin, CallbackRegistryMixin)
 	Menu:Hide()
 	Menu:EnableMouse(true)
 	Menu:SetClampedToScreen(true)
 	Menu:SetScript('OnShow', OnShow)
 
-	local Backdrop = CreateFrame('Frame', '$parentBackdrop', Menu, BackdropTemplateMixin and 'BackdropTemplate')
+	local Backdrop = CreateFrame('Frame', '$parentBackdrop', Menu, 'BackdropTemplate')
 	Backdrop:SetPoint('CENTER')
 	Menu.Backdrop = Backdrop
 
