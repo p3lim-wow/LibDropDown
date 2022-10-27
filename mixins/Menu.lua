@@ -171,7 +171,7 @@ function menuMixin:UpdateLine(index, data)
 
 		if(data.disabled) then
 			Line:Disable()
-			Line:SetMotionScriptsWhileDisabled(data.forceMotion)
+			Line:SetMotionScriptsWhileDisabled(not not data.forceMotion)
 		else
 			Line:Enable()
 		end
@@ -205,9 +205,9 @@ function menuMixin:UpdateLine(index, data)
 						Line.isRadio = data.isRadio
 					else
 						if(data.isRadio) then
-							Line:SetRadioState(data.checked)
+							Line:SetRadioState(not not data.checked)
 						else
-							Line:SetCheckedState(data.checked)
+							Line:SetCheckedState(not not data.checked)
 						end
 					end
 
