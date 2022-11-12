@@ -69,7 +69,10 @@ local function OnClick(self, button)
 		ShowUIPanel(ColorPickerFrame)
 		PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON)
 	else
-		pcall(self.func, self, button, unpack(self.args or {}))
+		local successful, err = pcall(self.func, self, button, unpack(self.args or {}))
+		if not successful then
+			error(err)
+		end
 	end
 
 	if(not self.keepShown) then
