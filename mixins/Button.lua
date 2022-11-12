@@ -58,6 +58,13 @@ function buttonMixin:Toggle()
 	self.Menu:Toggle()
 end
 
+--[[ Menu:Refresh()
+See [Menu:Toggle()](Menu#refresh).
+--]]
+function buttonMixin:Refresh()
+	self.Menu:Refresh()
+end
+
 --[[ Button:SetAnchor(_..._)
 See [Menu:SetAnchor(_point, anchor, relativePoint, x, y_)](Menu#menusetanchorpointanchorrelativepointxy).
 --]]
