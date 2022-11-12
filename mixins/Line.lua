@@ -5,13 +5,7 @@ Created with [LibDropDown:CreateLine()](LibDropDown#libdropdowncreatelinemenu).
 local lib = LibStub('LibDropDown')
 
 local function OnShow(self)
-	if(self.checked) then
-		if(self.isRadio) then
-			self:SetRadioState(self:checked())
-		else
-			self:SetCheckedState(self:checked())
-		end
-	end
+	self:UpdateState()
 end
 
 local function OnEnter(self)
@@ -189,6 +183,19 @@ function lineMixin:SetTexture(texture, color)
 	end
 
 	self.Texture:Show()
+end
+
+--[[ Line:UpdateState()
+Updates the displayed state of the line.
+--]]
+function lineMixin:UpdateState()
+	if(self.checked) then
+		if(self.isRadio) then
+			self:SetRadioState(self:checked())
+		else
+			self:SetCheckedState(self:checked())
+		end
+	end
 end
 
 --[[ Line:Reset()
