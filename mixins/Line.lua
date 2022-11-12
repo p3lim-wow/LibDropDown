@@ -171,7 +171,7 @@ Updates the Line text.
 --]]
 function lineMixin:UpdateText()
 	local text = self.Text:GetText():gsub('|T.*|t', ''):gsub('|A.*|a', '')
-	self.Text:SetText(text)
+	self:SetText(text)
 end
 
 --[[ Line:SetTexture(_texture[, color]_)
