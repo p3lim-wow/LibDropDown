@@ -232,6 +232,8 @@ function menuMixin:UpdateLine(index, data)
 	end
 
 	Line:Show()
+	Line:UpdateState()
+
 	return Line
 end
 
@@ -358,6 +360,18 @@ Returns the number of lines in the menu.
 --]]
 function menuMixin:NumLines()
 	return #self.lines
+end
+
+--[[ Menu:Refresh()
+Iterates through every line and refreshes it with the latest data.
+
+If used to refresh the checked state of a line, make sure to set the lines' `data.checked` to a
+function that will return the current state.
+--]]
+function menuMixin:Refresh()
+	for index, data in next, self.data do
+		self:UpdateLine(index, data)
+	end
 end
 
 --[[ Menu:SetStyle(_name_)

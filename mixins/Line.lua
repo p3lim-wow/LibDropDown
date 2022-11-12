@@ -4,10 +4,6 @@ Created with [LibDropDown:CreateLine()](LibDropDown#libdropdowncreatelinemenu).
 --]]
 local lib = LibStub('LibDropDown')
 
-local function OnShow(self)
-	self:UpdateState()
-end
-
 local function OnEnter(self)
 	-- hide all submenues for the current menu
 	for _, Menu in next, self:GetParent().menus do
@@ -226,7 +222,6 @@ Creates and returns a new [Line](Line) object for the given [Menu](Menu).
 function lib:CreateLine(Menu)
 	local Line = Mixin(CreateFrame('Button', nil, Menu), lineMixin)
 	Line:SetSize(1, 16)
-	Line:SetScript('OnShow', OnShow)
 	Line:SetScript('OnEnter', OnEnter)
 	Line:SetScript('OnLeave', OnLeave)
 	Line:SetScript('OnClick', OnClick)
