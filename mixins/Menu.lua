@@ -1,8 +1,13 @@
+local MINOR = 6
+local lib, minor = LibStub('LibDropDown')
+if minor > MINOR then
+	return
+end
+
 --[[ Menu:header
 Documentation for the [Menu](Menu) object.
 Created with [LibDropDown:NewMenu()](LibDropDown#libdropdownnewmenuparent-name).
 --]]
-local lib = LibStub('LibDropDown')
 
 local function OnShow(self)
 	-- gather some size data

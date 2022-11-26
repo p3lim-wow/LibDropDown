@@ -1,8 +1,13 @@
+local MINOR = 6
+local lib, minor = LibStub('LibDropDown')
+if minor > MINOR then
+	return
+end
+
 --[[ Line:header
 Documentation for the [Line](Line) object.
 Created with [LibDropDown:CreateLine()](LibDropDown#libdropdowncreatelinemenu).
 --]]
-local lib = LibStub('LibDropDown')
 
 local function OnEnter(self)
 	-- hide all submenues for the current menu
