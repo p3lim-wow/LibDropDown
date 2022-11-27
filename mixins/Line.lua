@@ -65,7 +65,10 @@ local function OnClick(self, button)
 		PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON)
 	else
 		local successful, err = pcall(self.func, self, button, unpack(self.args or {}))
-		if not successful then
+		if successful then
+			-- refresh menu after something changed
+			self:GetParent():Refresh()
+		else
 			error(err)
 		end
 	end
