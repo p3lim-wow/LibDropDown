@@ -13,3 +13,4 @@ required-dependencies:
 ignore:
   - README.md
   - tests
+  - utils

@@ -1,6 +1,7 @@
-local MAJOR, MINOR = 'LibDropDown', 6
+local MAJOR = 'LibDropDown'
 assert(LibStub, MAJOR .. ' requires LibStub')
 
+local MINOR = 6
 local lib, oldMinor = LibStub:NewLibrary(MAJOR, MINOR)
 if not lib then
 	return
