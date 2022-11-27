@@ -1,4 +1,4 @@
-local MINOR = 7
+local MINOR = 8
 local lib, minor = LibStub('LibDropDown')
 if minor > MINOR then
 	return
