@@ -495,7 +495,8 @@ function lib:NewMenu(parent, name)
 
 	Menu:SetStyle()
 
-	table.insert(UIMenus, Menu:GetDebugName())
+	-- this taints the game menu or smth
+	-- table.insert(UIMenus, Menu:GetDebugName())
 
 	Menu.anchor = {'TOP', Menu:GetParent(), 'BOTTOM', 0, -12} -- 8, 22
 	Menu.anchorCursor = false

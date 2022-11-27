@@ -31,6 +31,15 @@ function lib:CloseAll(ignore)
 	end
 end
 
+hooksecurefunc('CloseMenus', function()
+	-- close all our menus too
+	for menu in next, lib.dropdowns do
+		if(menu ~= ignore) then
+			menu:Hide()
+		end
+	end
+end)
+
 --[[ LibDropDown:RegisterStyle(_name, data_)
 Register a style for use with [Button:SetStyle(name)](Button#buttonsetstylename) and [Menu:SetStyle(name)](Menu#menusetstylename).
 
