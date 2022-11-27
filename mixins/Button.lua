@@ -233,8 +233,12 @@ function lib:NewButton(parent, name)
 	return Button
 end
 
-local buttonStretchMixin = CreateFromMixins(buttonMixin)
+--[[ ButtonStretch:header
+Documentation for the [ButtonStretch](ButtonStretch) object.
+Created with [LibDropDown:NewButtonStretch()](LibDropDown#libdropdownnewbuttonstretchparent-name).
+--]]
 
+local buttonStretchMixin = CreateFromMixins(buttonMixin)
 buttonStretchMixin.SetJustifyH = nil
 buttonStretchMixin.GetJustifyH = nil
 
@@ -269,6 +273,75 @@ function buttonStretchMixin:OnMouseUp()
 	end
 end
 
+--[[ ButtonStretch:Add(_..._)
+See [Menu:AddLines()](Menu#menuaddlines).
+--]]
+
+--[[ ButtonStretch:Remove(_..._)
+See [Menu:RemoveLine()](Menu#menuremoveline).
+--]]
+
+--[[ ButtonStretch:Clear()
+See [Menu:ClearLines()](Menu#menuclearlines)
+--]]
+
+--[[ ButtonStretch:Clear()
+See [Menu:ClearLines()](Menu#menuclearlines)
+--]]
+
+--[[ ButtonStretch:Toggle()
+See [Menu:Toggle()](Menu#menutoggle).
+--]]
+
+--[[ ButtonStretch:SetAnchor(_..._)
+See [Menu:SetAnchor(_point, anchor, relativePoint, x, y_)](Menu#menusetanchorpointanchorrelativepointxy).
+--]]
+
+--[[ ButtonStretch:GetAnchor()
+See [Menu:GetAnchor()](Menu#menugetanchor).
+--]]
+
+--[[ ButtonStretch:SetAnchorCursor(_flag_)
+See [Menu:SetAnchorCursor(_flag_)](Menu#menusetanchorcursorflag).
+--]]
+
+--[[ ButtonStretch:IsAnchorCursor()
+See [Menu:IsAnchorCursor()](Menu#menuisanchorcursor).
+--]]
+
+--[[ ButtonStretch:SetStyle(...)
+See [Menu:SetStyle(_name_)](Menu#menusetstylename).
+--]]
+
+--[[ ButtonStretch:GetStyle()
+See [Menu:GetStyle()](Menu#menugetstyle).
+--]]
+
+--[[ ButtonStretch:SetTimeout(_timeout_)
+See [Menu:SetTimeout(_timeout_)](Menu#menusettimeouttimeout).
+--]]
+
+--[[ ButtonStretch:GetTimeout()
+See [Menu:GetTimeout()](Menu#menugettimeout).
+--]]
+
+--[[ ButtonStretch:SetText(_..._)
+See [Widget:SetText](http://wowprogramming.com/docs/widgets/Button/SetText).
+--]]
+
+--[[ ButtonStretch:GetText()
+See [Widget:GetText](http://wowprogramming.com/docs/widgets/Button/GetText).
+--]]
+
+--[[ ButtonStretch:SetFormattedText(_..._)
+See [Widget:SetFormattedText](http://wowprogramming.com/docs/widgets/Button/SetFormattedText).
+--]]
+
+--[[ ButtonStretch:SetTexture(_texture_)
+Sets the texture of the ButtonStretch.
+
+* `texture` : texture to set _(string)_
+--]]
 function buttonStretchMixin:SetTexture(texture)
 	self.TopLeft:SetTexture(texture)
 	self.TopRight:SetTexture(texture)
@@ -281,10 +354,22 @@ function buttonStretchMixin:SetTexture(texture)
 	self.MiddleMiddle:SetTexture(texture)
 end
 
+--[[ ButtonStretch:SetArrowShown(_state_)
+Sets the visibility of the Arrow sub-widget.
+
+* `state` : shows/hides the Arrow sub-widget _(boolean)_
+--]]
 function buttonStretchMixin:SetArrowShown(state)
 	self.Arrow:SetShown(state)
 end
 
+--[[ ButtonStretch:SetArrowPosition(_side_, _dir_, _offset_)
+Sets the side and direction of the Arrow sub-widget and adjusts the default menu anchor.
+
+* `side`   : the side for the Arrow sub-widget, 'left'/'right' _(string)_
+* `dir`    : the direction of the Arrow sub-widget, 'left'/'right'/'top'/'bottom' _(string)_
+* `offset` : the offset for the menu _(number)_
+--]]
 function buttonStretchMixin:SetArrowPosition(side, dir, offset)
 	self.Arrow:ClearAllPoints()
 
