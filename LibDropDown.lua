@@ -36,9 +36,7 @@ if not lib.hookedCloseMenus then
 	hooksecurefunc('CloseMenus', function()
 		-- close all our menus too
 		for menu in next, lib.dropdowns do
-			if(menu ~= ignore) then
-				menu:Hide()
-			end
+			menu:Hide()
 		end
 	end)
 end
