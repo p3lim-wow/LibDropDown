@@ -7,8 +7,8 @@ if not lib then
 	return
 end
 
-lib.dropdowns = {}
-lib.styles = {}
+lib.dropdowns = lib.dropdowns or {}
+lib.styles = lib.styles or {}
 
 --[[ LibDropDown:CloseAll(_ignore_)
 Closes all open dropdowns, even ones made with [Blizzard voodoo](https://www.townlong-yak.com/framexml/live/UIDropDownMenu.lua).
@@ -31,14 +31,17 @@ function lib:CloseAll(ignore)
 	end
 end
 
-hooksecurefunc('CloseMenus', function()
-	-- close all our menus too
-	for menu in next, lib.dropdowns do
-		if(menu ~= ignore) then
-			menu:Hide()
+if not lib.hookedCloseMenus then
+	lib.hookedCloseMenus = true
+	hooksecurefunc('CloseMenus', function()
+		-- close all our menus too
+		for menu in next, lib.dropdowns do
+			if(menu ~= ignore) then
+				menu:Hide()
+			end
 		end
-	end
-end)
+	end)
+end
 
 --[[ LibDropDown:RegisterStyle(_name, data_)
 Register a style for use with [Button:SetStyle(name)](Button#buttonsetstylename) and [Menu:SetStyle(name)](Menu#menusetstylename).
